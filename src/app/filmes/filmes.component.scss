@@ -1,0 +1,35 @@
+/* Add these styles to your component's CSS file or a global stylesheet */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+  }
+  
+  .table th, .table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  .table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .table th:first-child, .table td:first-child {
+    padding-left: 12px;
+  }
+  
+  .table th:last-child, .table td:last-child {
+    padding-right: 12px;
+  }
+  

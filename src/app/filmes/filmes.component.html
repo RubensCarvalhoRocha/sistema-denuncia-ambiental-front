@@ -1,0 +1,31 @@
+<div class="flex flex-col flex-auto w-full">
+  <div class="flex flex-wrap w-full max-w-screen-xl mx-auto py-6 md:p-8">
+    <!-- Title and action buttons -->
+    <div class="flex items-center justify-between w-full">
+      <div>
+        <h2 class="text-3xl font-semibold tracking-tight leading-8">Filmes</h2>
+        <div class="font-medium tracking-tight text-secondary">Informações detalhadas do filmes</div>
+        <a routerLink="/gerais"></a> <!-- Chamando a nova rota -->
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome do Filme</th>
+          <th>Diretor</th>
+          <th>Ano</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let filme of filmes">
+          <td>{{ filme.id }}</td>
+          <td>{{ filme.nomeFilme }}</td>
+          <td>{{ filme.diretor }}</td>
+          <td>{{ filme.ano }}</td>
+          <td>{{ filme.nota }}</td>
+        </tr>
+      </tbody>
+    </table>
