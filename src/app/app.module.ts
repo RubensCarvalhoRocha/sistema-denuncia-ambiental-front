@@ -13,6 +13,8 @@ import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getPortuguesePaginatorIntl } from './pt-br-paginator-intl';
 
 
 const routerConfig: ExtraOptions = {
@@ -46,6 +48,10 @@ const routerConfig: ExtraOptions = {
     ],
     bootstrap   : [
         AppComponent
+    ],
+
+    providers   : [
+        { provide: MatPaginatorIntl, useValue: getPortuguesePaginatorIntl() },
     ]
 })
 export class AppModule

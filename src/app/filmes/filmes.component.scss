@@ -2,34 +2,36 @@
 
 .table {
     width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ccc;
+    border-collapse: collapse !important;
+    border: 1px solid #e60808;
   }
+
+  
   
   .table th, .table td {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc !important;
     text-align: left;
   }
   
   .table th {
-    background-color: #f2f2f2;
+    background-color: #f2f2f2 !important;
     font-weight: bold;
   }
   
   .table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f2f2f2 !important;
   }
   
   .table tbody tr:hover {
-    background-color: #e0e0e0;
+    background-color: #e0e0e0 !important;
   }
   
   .table th:first-child, .table td:first-child {
-    padding-left: 12px;
+    padding-left: 12px !important;
   }
   
   .table th:last-child, .table td:last-child {
-    padding-right: 12px;
+    padding-right: 12px !important;
   }
   
