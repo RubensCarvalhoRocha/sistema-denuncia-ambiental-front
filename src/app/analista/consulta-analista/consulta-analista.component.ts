@@ -18,7 +18,7 @@ export class ConsultaAnalistaComponent {
     @ViewChild('denunciasPaginator', { read: MatPaginator }) public denunciasPaginator: MatPaginator;
     @ViewChild('denunciasTable', { read: MatSort }) public denunciasTableMatSort: MatSort;
     public denunciasDataSource: MatTableDataSource<any> = new MatTableDataSource();
-    public denunciasTableColumns: string[] = ['protocolo', 'municipio', 'categoria', 'data', 'situacao'];
+    public denunciasTableColumns: string[] = ['id', 'municipio', 'categoriaPai', 'data'];
 
     denuncias: Denuncias[] = [];
 
@@ -38,36 +38,36 @@ export class ConsultaAnalistaComponent {
       });
     }
 
-    deletar(id: number): void {
-      const confirmation = this._fuseConfirmationService.open({
-        title: 'Excluir registro...',
-        message: `Tem certeza que deseja excluir definitivamente este registro?`,
-        actions: {
-          cancel: {
-            label: 'Cancelar',
-          },
-          confirm: {
-            label: 'Deletar',
-            color: 'warn',
-          },
-        },
-      });
+    // deletar(id: number): void {
+    //   const confirmation = this._fuseConfirmationService.open({
+    //     title: 'Excluir registro...',
+    //     message: `Tem certeza que deseja excluir definitivamente este registro?`,
+    //     actions: {
+    //       cancel: {
+    //         label: 'Cancelar',
+    //       },
+    //       confirm: {
+    //         label: 'Deletar',
+    //         color: 'warn',
+    //       },
+    //     },
+    //   });
 
-      confirmation.afterClosed().subscribe((result) => {
-        if (result === 'confirmed') {
-          this.analistaService
-            .deleteFilme(id)
-            .subscribe(() => {
-              notyf.success('Seu certificado foi exluido com sucesso!');
-              this.analistaService.getDenuncias().subscribe({});
-            },
-            (error) => {
-              console.error(error);
-              notyf.error('Algo deu errado ao excluir seu certificado.');
-            });
-        }
-      });
-    }
+    //   confirmation.afterClosed().subscribe((result) => {
+    //     if (result === 'confirmed') {
+    //       this.analistaService
+    //         .deleteFilme(id)
+    //         .subscribe(() => {
+    //           notyf.success('Seu certificado foi exluido com sucesso!');
+    //           this.analistaService.getDenuncias().subscribe({});
+    //         },
+    //         (error) => {
+    //           console.error(error);
+    //           notyf.error('Algo deu errado ao excluir seu certificado.');
+    //         });
+    //     }
+    //   });
+    // }
 
   }
 

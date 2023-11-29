@@ -13,6 +13,6 @@ export class AnalistaService {
     constructor(private Http: HttpClient) {}
 
     getDenuncias(): Observable<Denuncias[]> {
-    return this.Http.get<Denuncias[]>(`${this.url}/`); // For retrieving all filmes
+    return this.Http.get<Denuncias[]>(`${this.url}/denuncia`); // For retrieving all filmes
     }
 }
