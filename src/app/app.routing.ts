@@ -144,6 +144,14 @@ export const appRoutes: Route[] = [
                     ),
             },
 
+            {
+                path: 'denunciar',
+                loadChildren: () =>
+                    import('app/denunciante/denunciante.module').then(
+                        (m) => m.DenuncianteModule
+                    ),
+            },
+
         ],
     },
 ];
