@@ -1,4 +1,4 @@
-export class Denuncia {
+export class Denuncias {
     public denunciante: string;
     public rua: string;
     public bairro: string;
@@ -17,7 +17,7 @@ export class Denuncia {
     public foto3: string;
     public usuarioId: number;
 
-    constructor(denuncia?: Denuncia) {
+    constructor(denuncia?: Denuncias) {
       if (denuncia) {
         this.denunciante = denuncia.denunciante;
         this.rua = denuncia.rua;
