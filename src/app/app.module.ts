@@ -17,7 +17,11 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { getPortuguesePaginatorIntl } from './pt-br-paginator-intl';
 import { ConsultaAnalistaComponent } from './analista/consulta-analista/consulta-analista.component';
 import { MatTableModule } from '@angular/material/table';
-
+import { DenunciarComponent } from './denunciante/denunciar/denunciar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -28,6 +32,7 @@ const routerConfig: ExtraOptions = {
     declarations: [
         AppComponent,
         ConsultaAnalistaComponent,
+        DenunciarComponent,
     ],
     imports     : [
         BrowserModule,
@@ -38,6 +43,10 @@ const routerConfig: ExtraOptions = {
 
         MatTableModule,
         MatPaginatorModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
 
 
         // Fuse, FuseConfig & FuseMockAPI
