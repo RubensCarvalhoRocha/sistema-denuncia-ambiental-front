@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getPortuguesePaginatorIntl } from './pt-br-paginator-intl';
+import { ConsultaAnalistaComponent } from './analista/consulta-analista/consulta-analista.component';
 
 
 const routerConfig: ExtraOptions = {
@@ -25,6 +26,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
+        ConsultaAnalistaComponent,
     ],
     imports     : [
         BrowserModule,
