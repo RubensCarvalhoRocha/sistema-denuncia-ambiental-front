@@ -1,0 +1,128 @@
+<div class="flex flex-col flex-auto w-full">
+    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto py-6 md:p-8">
+        <!-- Title and action buttons -->
+        <div class="flex items-center justify-between w-full">
+            <div>
+                <h2 class="text-3xl font-semibold tracking-tight leading-8">
+                    Denúncias
+                </h2>
+                <div class="font-medium tracking-tight text-secondary">
+                    Informações detelhadas das denúncias
+                </div>
+                <!-- Chamando a nova rota -->
+            </div>
+        </div>
+
+        <table
+            class="overflow-x-auto w-full"
+            mat-table
+            matSort
+            [dataSource]="denunciasDataSource"
+            #denunciasTable
+        >
+            <!-- Protocolo -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                    Protocolo
+                </th>
+                <td mat-cell *matCellDef="let denuncia">
+                    <span
+                        class="pr-6 font-medium text-sm text-secondary whitespace-nowrap"
+                    >
+                        {{
+                            denuncia.id
+                                ? denuncia.id
+                                : "Não informado."
+                        }}
+                    </span>
+                </td>
+            </ng-container>
+
+            <!-- Município -->
+            <ng-container matColumnDef="municipio">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>
+                    Município
+                </th>
+                <td mat-cell *matCellDef="let denuncia">
+                    <span
+                        class="pr-6 font-medium text-sm text-secondary whitespace-nowrap"
+                    >
+                        {{ denuncia.municipio ? denuncia.municipio : "Não informado." }}
+                    </span>
+                </td>
+            </ng-container>
+
+            <!-- Categoria -->
+            <ng-container matColumnDef="categoriaPai">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>Categoria</th>
+                <td mat-cell *matCellDef="let denuncia">
+                    <span
+                        class="pr-6 font-medium text-sm text-secondary whitespace-nowrap"
+                    >
+                        {{ denuncia.categoriaPai ? denuncia.categoriaPai : "Não informado." }}
+                    </span>
+                </td>
+            </ng-container>
+
+
+
+             <!-- SITUAÇÃO -->
+             <!-- <ng-container matColumnDef="situacao">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>Situação</th>
+                <td mat-cell *matCellDef="let denuncia">
+                    <span
+                        class="pr-6 font-medium text-sm text-secondary whitespace-nowrap"
+                    >
+                        {{ denuncia.situacao ? denuncia.situacao : "Não informado." }}
+                    </span>
+                </td>
+            </ng-container> -->
+
+             <!-- DATA -->
+             <ng-container matColumnDef="data">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>Situação</th>
+                <td mat-cell *matCellDef="let denuncia">
+                    <span
+                        class="pr-6 font-medium text-sm text-secondary whitespace-nowrap"
+                    >
+                        {{ denuncia.data ? denuncia.data : "Não informado." }}
+                    </span>
+                </td>
+            </ng-container>
+
+            <!--    Acoes -->
+            <ng-container matColumnDef="acoes">
+                <th mat-header-cell mat-sort-header *matHeaderCellDef>Ações</th>
+                <td mat-cell *matCellDef="let filmes">
+                    <span
+                        class="pr-6 font-medium text-sm text-secondary whitespace-nowrap"
+                    >
+                        <button mat-icon-button (click)="deletar(filmes.id)"><mat-icon [matTooltip]="'Excluír'" [svgIcon]="'delete'"></mat-icon></button>
+                        <button mat-icon-button (click)="adicionar(filmes.id)"><mat-icon svgIcon="mat_solid:add" [svgIcon]="'create'"></mat-icon></button>
+                        <button><mat-icon svgIcon="mat_solid:add"></mat-icon></button>
+                    </span>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="denunciasTableColumns"></tr>
+            <tr
+                class="order-row h-16"
+                mat-row
+                *matRowDef="let row; columns: denunciasTableColumns"
+            ></tr>
+        </table>
+        <div
+            class="p-5 border border-t-0 border-l-0 border-r-0 border-b-1 w-full"
+            *ngIf="!denunciasDataSource.data.length"
+        >
+            <label>Nenhum dado encontrado.</label>
+        </div>
+        <mat-paginator
+            [pageSizeOptions]="[10, 25, 50, 100]"
+            showFirstLastButtons
+            #clientePaginator
+            aria-label="Selecione a página"
+        >
+        </mat-paginator>
+    </div>
+</div>

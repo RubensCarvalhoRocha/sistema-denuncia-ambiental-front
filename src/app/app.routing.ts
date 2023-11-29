@@ -129,10 +129,18 @@ export const appRoutes: Route[] = [
 
             //Filmes Gerais e Drama Rota
             {
-                path: 'consultar',
+                path: 'filmes',
                 loadChildren: () =>
                     import('app/filmes/filmes.module').then(
                         (m) => m.FilmesModule
+                    ),
+            },
+
+            {
+                path: 'consultar',
+                loadChildren: () =>
+                    import('app/analista/analista.module').then(
+                        (m) => m.AnalistaModule
                     ),
             },
 

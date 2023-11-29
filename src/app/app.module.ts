@@ -13,8 +13,10 @@ import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { getPortuguesePaginatorIntl } from './pt-br-paginator-intl';
+import { ConsultaAnalistaComponent } from './analista/consulta-analista/consulta-analista.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 const routerConfig: ExtraOptions = {
@@ -25,6 +27,7 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
+        ConsultaAnalistaComponent,
     ],
     imports     : [
         BrowserModule,
@@ -32,7 +35,9 @@ const routerConfig: ExtraOptions = {
         RouterModule.forRoot(appRoutes, routerConfig),
         FormsModule, //add
         HttpClientModule,//add
-        
+
+        MatTableModule,
+        MatPaginatorModule,
 
 
         // Fuse, FuseConfig & FuseMockAPI
