@@ -5,6 +5,10 @@ import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
 
+interface Tipo {
+    value: string;
+    viewValue: string;
+  }
 @Component({
     selector     : 'auth-sign-up',
     templateUrl  : './sign-up.component.html',
@@ -14,6 +18,11 @@ import { AuthService } from 'app/core/auth/auth.service';
 export class AuthSignUpComponent implements OnInit
 {
     @ViewChild('signUpNgForm') signUpNgForm: NgForm;
+
+    tipos: Tipo[] = [
+        {value: 'DENUNCIANTE-0', viewValue: 'DENUNCIANTE'},
+        {value: 'ANALISTA-1', viewValue: 'ANALISTA'},
+      ];
 
     alert: { type: FuseAlertType; message: string } = {
         type   : 'success',

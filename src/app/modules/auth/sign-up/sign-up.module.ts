@@ -12,6 +12,8 @@ import { SharedModule } from 'app/shared/shared.module';
 import { AuthSignUpComponent } from 'app/modules/auth/sign-up/sign-up.component';
 import { authSignupRoutes } from 'app/modules/auth/sign-up/sign-up.routing';
 
+import {FormsModule} from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
     declarations: [
         AuthSignUpComponent
@@ -26,7 +28,10 @@ import { authSignupRoutes } from 'app/modules/auth/sign-up/sign-up.routing';
         MatProgressSpinnerModule,
         FuseCardModule,
         FuseAlertModule,
-        SharedModule
+        SharedModule,
+
+        MatSelectModule,//combobox
+        FormsModule
     ]
 })
 export class AuthSignUpModule

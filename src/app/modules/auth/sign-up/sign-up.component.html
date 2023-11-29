@@ -1,57 +1,63 @@
-<div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0">
-    <div class="md:flex md:items-center md:justify-end w-full sm:w-auto md:h-full md:w-1/2 py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card">
+<div
+    class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0"
+>
+    <div
+        class="md:flex md:items-center md:justify-end w-full sm:w-auto md:h-full md:w-1/2 py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card"
+    >
         <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
             <!-- Logo -->
 
             <!-- Title -->
-            <strong class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Cadastre-se</strong>
+            <strong
+                class="mt-8 text-4xl font-extrabold tracking-tight leading-tight"
+                >Cadastre-se</strong
+            >
             <div class="flex items-baseline mt-0.5 font-medium">
                 <div>Já tem uma conta?</div>
                 <a
                     class="ml-1 text-primary-500 hover:underline"
-                    [routerLink]="['/sign-in']">Entre!
+                    [routerLink]="['/sign-in']"
+                    >Entre!
                 </a>
             </div>
 
             <!-- Alert -->
             <!-- Sign Up form -->
             <form class="mt-8" [formGroup]="signUpForm" #signUpNgForm="ngForm">
-
                 <!-- Name field -->
                 <mat-form-field class="w-full">
                     <mat-label>Nome Completo</mat-label>
-                    <input
-                        id="name"
-                        matInput
-                        [formControlName]="'name'">
-                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                    <input id="name" matInput [formControlName]="'name'" />
+                    <mat-error
+                        *ngIf="signUpForm.get('name').hasError('required')"
+                    >
                         Nome Completo é nescessário
                     </mat-error>
                 </mat-form-field>
 
-                  <!-- CPF field -->
-                  <mat-form-field class="w-full">
+                <!-- CPF field -->
+                <mat-form-field class="w-full">
                     <mat-label>CPF</mat-label>
-                    <input
-                        id="CPF"
-                        matInput
-                        [formControlName]="'CPF'">
-                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                    <input id="CPF" matInput [formControlName]="'CPF'" />
+                    <mat-error
+                        *ngIf="signUpForm.get('name').hasError('required')"
+                    >
                         CPF é nescessário
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Email field -->
-                <mat-form-field class="w-full">     
+                <mat-form-field class="w-full">
                     <mat-label>Endereço de email</mat-label>
-                    <input
-                        id="email"
-                        matInput
-                        [formControlName]="'email'">
-                    <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+                    <input id="email" matInput [formControlName]="'email'" />
+                    <mat-error
+                        *ngIf="signUpForm.get('email').hasError('required')"
+                    >
                         Endereço de email é nescessário
                     </mat-error>
-                    <mat-error *ngIf="signUpForm.get('email').hasError('email')">
+                    <mat-error
+                        *ngIf="signUpForm.get('email').hasError('email')"
+                    >
                         Por favor entre com um endereço de email valido
                     </mat-error>
                 </mat-form-field>
@@ -64,36 +70,55 @@
                         matInput
                         type="password"
                         [formControlName]="'password'"
-                        #passwordField>
+                        #passwordField
+                    />
                     <button
                         mat-icon-button
                         type="button"
-                        (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
-                        matSuffix>
+                        (click)="
+                            passwordField.type === 'password'
+                                ? (passwordField.type = 'text')
+                                : (passwordField.type = 'password')
+                        "
+                        matSuffix
+                    >
                         <mat-icon
                             class="icon-size-5"
                             *ngIf="passwordField.type === 'password'"
-                            [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                            [svgIcon]="'heroicons_solid:eye'"
+                        ></mat-icon>
                         <mat-icon
                             class="icon-size-5"
                             *ngIf="passwordField.type === 'text'"
-                            [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                            [svgIcon]="'heroicons_solid:eye-off'"
+                        ></mat-icon>
                     </button>
-                    <mat-error>
-                        Senha é nescessária
-                    </mat-error>
+                    <mat-error> Senha é nescessária </mat-error>
                 </mat-form-field>
 
                 <!-- Telefone field -->
-                  <mat-form-field class="w-full">
+                <mat-form-field class="w-full">
                     <mat-label>Telefone</mat-label>
                     <input
                         id="telefone"
                         matInput
-                        [formControlName]="'telefone'">
-                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                        [formControlName]="'telefone'"
+                    />
+                    <mat-error
+                        *ngIf="signUpForm.get('name').hasError('required')"
+                    >
                         Telefone é nescessário
                     </mat-error>
+                </mat-form-field>
+
+                  <!-- Tipo de usuário -->
+                  <mat-form-field>
+                    <mat-label>Descrição</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                            {{ tipo.viewValue }}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
 
                 <!-- Submit button -->
@@ -102,22 +127,28 @@
                     mat-flat-button
                     [color]="'primary'"
                     [disabled]="signUpForm.disabled"
-                    (click)="signUp()">
-                    <strong *ngIf="!signUpForm.disabled">
-                       Criar
-                    </strong>
+                    (click)="signUp()"
+                >
+                    <strong *ngIf="!signUpForm.disabled"> Criar </strong>
                     <mat-progress-spinner
                         *ngIf="signUpForm.disabled"
                         [diameter]="24"
-                        [mode]="'indeterminate'"></mat-progress-spinner>
+                        [mode]="'indeterminate'"
+                    ></mat-progress-spinner>
                 </button>
-
             </form>
         </div>
     </div>
-    <div class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l">
+    <div
+        class="relative hidden md:flex flex-auto items-center justify-center w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l"
+    >
         <!-- Sua imagem que cobre todo o lado direito -->
-        <img class="absolute inset-0 w-full h-full object-cover" src="assets\images\logo\Home.jpg" alt="Imagem de fundo">        <!-- Background - @formatter:off -->
+        <img
+            class="absolute inset-0 w-full h-full object-cover"
+            src="assets\images\logo\Home.jpg"
+            alt="Imagem de fundo"
+        />
+        <!-- Background - @formatter:off -->
         <!-- Content -->
     </div>
 </div>
