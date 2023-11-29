@@ -1,4 +1,5 @@
 export class Denuncias {
+    public id: number;
     public denunciante: string;
     public rua: string;
     public bairro: string;
@@ -8,17 +9,26 @@ export class Denuncias {
     public latitude: string;
     public longitude: string;
     public descricao: string;
-    public categoriaPai: number;
-    public categoriaFilha: number;
+    public categoriaPai: string;
+    public categoriaFilha: string;
     public data: string;
     public provavelAutor: string;
     public foto1: string;
     public foto2: string;
     public foto3: string;
-    public usuarioId: number;
+    public usuario: {
+      id: number;
+      nome: string;
+      cpf: string;
+      email: string;
+      descricao: string;
+      telefone: string;
+      dataCadastro: string;
+    };
 
     constructor(denuncia?: Denuncias) {
       if (denuncia) {
+        this.id = denuncia.id;
         this.denunciante = denuncia.denunciante;
         this.rua = denuncia.rua;
         this.bairro = denuncia.bairro;
@@ -35,7 +45,15 @@ export class Denuncias {
         this.foto1 = denuncia.foto1;
         this.foto2 = denuncia.foto2;
         this.foto3 = denuncia.foto3;
-        this.usuarioId = denuncia.usuarioId;
+        this.usuario = {
+          id: denuncia.usuario.id,
+          nome: denuncia.usuario.nome,
+          cpf: denuncia.usuario.cpf,
+          email: denuncia.usuario.email,
+          descricao: denuncia.usuario.descricao,
+          telefone: denuncia.usuario.telefone,
+          dataCadastro: denuncia.usuario.dataCadastro,
+        };
       } else {
         this.denunciante = null;
         this.rua = null;
@@ -53,7 +71,15 @@ export class Denuncias {
         this.foto1 = null;
         this.foto2 = null;
         this.foto3 = null;
-        this.usuarioId = null;
+        this.usuario = {
+          id: null,
+          nome: null,
+          cpf: null,
+          email: null,
+          descricao: null,
+          telefone: null,
+          dataCadastro: null,
+        };
       }
     }
   }
