@@ -2,67 +2,63 @@
     <div class="md:flex md:items-center md:justify-end w-full sm:w-auto md:h-full md:w-1/2 py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card">
         <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
             <!-- Logo -->
-            <div class="w-12">
-                <img src="assets/images/logo/logo.svg">
-            </div>
 
             <!-- Title -->
-            <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Sign up</div>
+            <strong class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Cadastre-se</strong>
             <div class="flex items-baseline mt-0.5 font-medium">
-                <div>Already have an account?</div>
+                <div>Já tem uma conta?</div>
                 <a
                     class="ml-1 text-primary-500 hover:underline"
-                    [routerLink]="['/sign-in']">Sign in
+                    [routerLink]="['/sign-in']">Entre!
                 </a>
             </div>
 
             <!-- Alert -->
-            <fuse-alert
-                class="mt-8"
-                *ngIf="showAlert"
-                [appearance]="'outline'"
-                [showIcon]="false"
-                [type]="alert.type"
-                [@shake]="alert.type === 'error'">
-                {{alert.message}}
-            </fuse-alert>
-
             <!-- Sign Up form -->
-            <form
-                class="mt-8"
-                [formGroup]="signUpForm"
-                #signUpNgForm="ngForm">
+            <form class="mt-8" [formGroup]="signUpForm" #signUpNgForm="ngForm">
 
                 <!-- Name field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                    <mat-label>Nome Completo</mat-label>
                     <input
                         id="name"
                         matInput
                         [formControlName]="'name'">
                     <mat-error *ngIf="signUpForm.get('name').hasError('required')">
-                        Full name is required
+                        Nome Completo é nescessário
+                    </mat-error>
+                </mat-form-field>
+
+                  <!-- CPF field -->
+                  <mat-form-field class="w-full">
+                    <mat-label>CPF</mat-label>
+                    <input
+                        id="CPF"
+                        matInput
+                        [formControlName]="'CPF'">
+                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                        CPF é nescessário
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Email field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Email address</mat-label>
+                <mat-form-field class="w-full">     
+                    <mat-label>Endereço de email</mat-label>
                     <input
                         id="email"
                         matInput
                         [formControlName]="'email'">
                     <mat-error *ngIf="signUpForm.get('email').hasError('required')">
-                        Email address is required
+                        Endereço de email é nescessário
                     </mat-error>
                     <mat-error *ngIf="signUpForm.get('email').hasError('email')">
-                        Please enter a valid email address
+                        Por favor entre com um endereço de email valido
                     </mat-error>
                 </mat-form-field>
 
                 <!-- Password field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Password</mat-label>
+                    <mat-label>Senha</mat-label>
                     <input
                         id="password"
                         matInput
@@ -84,37 +80,21 @@
                             [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
                     </button>
                     <mat-error>
-                        Password is required
+                        Senha é nescessária
                     </mat-error>
                 </mat-form-field>
 
-                <!-- Company field -->
-                <mat-form-field class="w-full">
-                    <mat-label>Company</mat-label>
+                <!-- Telefone field -->
+                  <mat-form-field class="w-full">
+                    <mat-label>Telefone</mat-label>
                     <input
-                        id="company-confirm"
+                        id="telefone"
                         matInput
-                        [formControlName]="'company'">
+                        [formControlName]="'telefone'">
+                    <mat-error *ngIf="signUpForm.get('name').hasError('required')">
+                        Telefone é nescessário
+                    </mat-error>
                 </mat-form-field>
-
-                <!-- ToS and PP -->
-                <div class="inline-flex items-end w-full mt-1.5">
-                    <mat-checkbox
-                        class="-ml-2"
-                        [color]="'primary'"
-                        [formControlName]="'agreements'">
-                        <span>I agree with</span>
-                        <a
-                            class="ml-1 text-primary-500 hover:underline"
-                            [routerLink]="['./']">Terms
-                        </a>
-                        <span>and</span>
-                        <a
-                            class="ml-1 text-primary-500 hover:underline"
-                            [routerLink]="['./']">Privacy Policy
-                        </a>
-                    </mat-checkbox>
-                </div>
 
                 <!-- Submit button -->
                 <button
@@ -123,9 +103,9 @@
                     [color]="'primary'"
                     [disabled]="signUpForm.disabled"
                     (click)="signUp()">
-                    <span *ngIf="!signUpForm.disabled">
-                        Create your free account
-                    </span>
+                    <strong *ngIf="!signUpForm.disabled">
+                       Criar
+                    </strong>
                     <mat-progress-spinner
                         *ngIf="signUpForm.disabled"
                         [diameter]="24"
