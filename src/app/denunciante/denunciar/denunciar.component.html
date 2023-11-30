@@ -82,6 +82,19 @@
 
                     <!-- Municipio -->
 
+                    <mat-form-field class="w-full">
+                        <mat-label>Município</mat-label>
+                        <div>
+                          <mat-select [formControlName]="'municipio'">
+                            <mat-option *ngFor="let municipio of municipiosGoias" [value]="municipio">
+                              {{ municipio }}
+                            </mat-option>
+                          </mat-select>
+                        </div>
+                        <mat-error *ngIf="denunciaForm.get('municipio').hasError('required')">
+                          Município é necessário
+                        </mat-error>
+                      </mat-form-field>
                     <!-- CEP-->
 
                     <mat-form-field class="w-full">
@@ -231,8 +244,8 @@
 
                     <!-- Sub-Categoria -->
 
-                    <!-- <mat-form-field class="w-full">
-                        <mat-label>Categoria</mat-label>
+                    <mat-form-field class="w-full">
+                        <mat-label>Sub-Categoria</mat-label>
                         <div>
                           <mat-select [formControlName]="'categoriaFilha'">
                             <mat-option *ngFor="let subCategoria of subCategorias" [value]="subCategoria.id">
@@ -243,7 +256,7 @@
                         <mat-error *ngIf="denunciaForm.get('categoriaFilha').hasError('required')">
                          Sub-Categoria é necessária
                         </mat-error>
-                      </mat-form-field> -->
+                      </mat-form-field>
 
                     <!-- Upload de Imagens -->
 
