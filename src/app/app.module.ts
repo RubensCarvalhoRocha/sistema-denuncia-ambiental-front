@@ -32,7 +32,6 @@ const routerConfig: ExtraOptions = {
     declarations: [
         AppComponent,
         ConsultaAnalistaComponent,
-        DenunciarComponent,
     ],
     imports     : [
         BrowserModule,
