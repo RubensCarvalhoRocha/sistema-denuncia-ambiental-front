@@ -11,6 +11,7 @@ import { SharedModule } from 'app/shared/shared.module';
 import { DenunciarComponent } from './denunciar/denunciar.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatAutocompleteModule,
     FormsModule,
+    MatSelectModule
   ]
 })
 export class DenuncianteModule { }
