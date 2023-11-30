@@ -56,6 +56,7 @@ export class DenunciarComponent implements OnInit{
             latitude: ['', Validators.required],
             longitude: ['', Validators.required],
             categoriaPai: ['', Validators.required]
+            // categoriaFilha: ['', Validators.required]
         });
     }
 

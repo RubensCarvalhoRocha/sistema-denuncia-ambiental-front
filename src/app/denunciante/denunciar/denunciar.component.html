@@ -231,6 +231,20 @@
 
                     <!-- Sub-Categoria -->
 
+                    <!-- <mat-form-field class="w-full">
+                        <mat-label>Categoria</mat-label>
+                        <div>
+                          <mat-select [formControlName]="'categoriaFilha'">
+                            <mat-option *ngFor="let subCategoria of subCategorias" [value]="subCategoria.id">
+                              {{ subCategoria.nome }}
+                            </mat-option>
+                          </mat-select>
+                        </div>
+                        <mat-error *ngIf="denunciaForm.get('categoriaFilha').hasError('required')">
+                         Sub-Categoria é necessária
+                        </mat-error>
+                      </mat-form-field> -->
+
                     <!-- Upload de Imagens -->
 
                     <!-- Message -->
