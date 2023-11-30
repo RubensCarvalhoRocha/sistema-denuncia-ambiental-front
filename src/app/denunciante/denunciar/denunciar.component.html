@@ -7,11 +7,14 @@
 
             </div>
             <div class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight">
-                Contact support
+                Realize uma denúncia
             </div>
+
             <!-- Form -->
             <div class="mt-8 sm:mt-12 p-6 pb-7 sm:p-10 sm:pb-7 shadow rounded-2xl bg-card">
+
                 <!-- Alert -->
+
                 <fuse-alert
                     class="mb-8"
                     *ngIf="alert"
@@ -27,73 +30,168 @@
                         <div class="text-2xl font-bold tracking-tight">Faça uma denúncia</div>
                         <div class="text-secondary">Sua solicitação será processada e nossa equipe de analista entrará em contato com você em 24 horas.</div>
                     </div>
-                    <!-- Name -->
+
+                    <!-- Name Field -->
+
                     <mat-form-field class="w-full">
                         <input
                             matInput
-                            [formControlName]="'name'"
+                            [formControlName]="'provavelAutor'"
                             [required]="true">
-                        <mat-label>Name</mat-label>
-                        <mat-error *ngIf="denunciaForm.get('name').hasError('required')">
-                            Required
+                        <mat-label>Provavel Autor</mat-label>
+                        <mat-error *ngIf="denunciaForm.get('provavelAutor').hasError('required')">
+                            Provavel Autor é nescessário
                         </mat-error>
                     </mat-form-field>
-                    <!-- Email -->
+
+                    <!-- Rua Field -->
+
                     <mat-form-field class="w-full">
                         <input
-                            type="email"
+                            type="rua"
                             matInput
-                            [formControlName]="'email'"
+                            [formControlName]="'rua'"
                             [required]="true">
-                        <mat-label>Email</mat-label>
-                        <mat-error *ngIf="denunciaForm.get('email').hasError('required')">
-                            Required
+                        <mat-label>Rua</mat-label>
+                        <mat-error *ngIf="denunciaForm.get('rua').hasError('required')">
+                            Rua é nescessário
                         </mat-error>
-                        <mat-error *ngIf="denunciaForm.get('email').hasError('email')">
-                            Enter a valid email address
+                        <mat-error *ngIf="denunciaForm.get('rua').hasError('rua')">
+                            Entre com uma Rua valida
                         </mat-error>
                     </mat-form-field>
-                    <!-- Subject -->
+
+                    <!-- CEP-->
+
                     <mat-form-field class="w-full">
                         <input
                             matInput
-                            [formControlName]="'subject'"
+                            [formControlName]="'CEP'"
                             [required]="true">
-                        <mat-label>Subject</mat-label>
-                        <mat-error *ngIf="denunciaForm.get('subject').hasError('required')">
-                            Required
+                        <mat-label>CEP</mat-label> 
+                        <mat-error *ngIf="denunciaForm.get('CEP').hasError('required')"> 
+                            CEP é necessário
                         </mat-error>
                     </mat-form-field>
+                    
+                    <!-- Bairro -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'bairro'"
+                            [required]="true">
+                        <mat-label>Bairro</mat-label>
+                        <mat-error *ngIf="denunciaForm.get('bairro').hasError('required')">
+                            Bairro é nescessário
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- pontoReferencia -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'pontoReferencia'"
+                            [required]="true">
+                        <mat-label>Ponto de Referência</mat-label>
+                        <mat-error *ngIf="denunciaForm.get('pontoReferencia').hasError('required')">
+                            Ponto de Referência é necessário
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- latitude -->
+
+                        <mat-form-field class="w-full">
+                            <input
+                                matInput
+                                [formControlName]="'latitude'"
+                                [required]="true">
+                            <mat-label>Latitude</mat-label>
+                            <mat-error *ngIf="denunciaForm.get('latitude').hasError('required')">
+                                Latitude é necessária
+                            </mat-error>
+                        </mat-form-field>
+
+                        <!-- longitude -->
+
+                        <mat-form-field class="w-full">
+                            <input
+                                matInput
+                                [formControlName]="'longitude'" 
+                                [required]="true">
+                            <mat-label>Longitude</mat-label>
+                            <mat-error *ngIf="denunciaForm.get('longitude').hasError('required')">
+                                Longitude é necessário
+                            </mat-error>
+                        </mat-form-field>
+
+                        <!-- data-->
+
+                        <mat-form-field class="w-full">
+                            <input
+                                matInput
+                                [formControlName]="'data'"
+                                [required]="true">
+                            <mat-label>Data</mat-label>
+                            <mat-error *ngIf="denunciaForm.get('data').hasError('required')">
+                                Data é necessária
+                            </mat-error>
+                        </mat-form-field>
+                        
+                    <!-- Titulo -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'titulo'"
+                            [required]="true">
+                        <mat-label>Título</mat-label>
+                        <mat-error *ngIf="denunciaForm.get('titulo').hasError('required')">
+                            Título é nescessário
+                        </mat-error>
+                    </mat-form-field>
+
+
                     <!-- Message -->
                     <mat-form-field class="w-full">
                         <textarea
                             matInput
-                            [formControlName]="'message'"
+                            [formControlName]="'descricao'"
                             [required]="true"
                             [rows]="5"
                             cdkTextareaAutosize></textarea>
-                        <mat-label>Message</mat-label>
-                        <mat-error *ngIf="denunciaForm.get('message').hasError('required')">
-                            Required
+                        <mat-label>Descrição</mat-label>
+                        <mat-error *ngIf="denunciaForm.get('descricao').hasError('required')">
+                            Descrição é nescessária
                         </mat-error>
                     </mat-form-field>
-                    <!-- Actions -->
+
+                    <!-- Botoes -->
+
+                            <!-- limpar -->
+
                     <div class="flex items-center justify-end">
                         <button
                             mat-button
                             [color]="'accent'"
                             [disabled]="denunciaForm.pristine || denunciaForm.untouched"
                             (click)="clearForm()">
-                            Clear
+                            limpar
                         </button>
+
+                        <!-- Enviar -->
+
                         <button
                             class="ml-2"
                             mat-flat-button
                             [color]="'primary'"
                             [disabled]="denunciaForm.pristine || denunciaForm.invalid"
                             (click)="sendForm()">
-                            Submit
+                            Enviar
                         </button>
+
+
                     </div>
                 </form>
             </div>

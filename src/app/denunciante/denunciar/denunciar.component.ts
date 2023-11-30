@@ -35,10 +35,17 @@ export class DenunciarComponent implements OnInit{
     {
         // Create the support form
         this.denunciaForm = this._formBuilder.group({
-            name   : ['', Validators.required],
-            email  : ['', [Validators.required, Validators.email]],
-            subject: ['', Validators.required],
-            message: ['', Validators.required]
+            provavelAutor   : ['', Validators.required],
+            rua  : ['', Validators.required],
+            CEP: ['', Validators.required],
+            pontoReferencia: ['', Validators.required],
+            bairro: ['', Validators.required],
+            data: ['', Validators.required],
+            titulo: ['', Validators.required],
+            descricao: ['', Validators.required],
+            latitude: ['', Validators.required],
+            longitude: ['', Validators.required]
+
         });
     }
 
