@@ -127,15 +127,6 @@ export const appRoutes: Route[] = [
                     ),
             },
 
-            //Filmes Gerais e Drama Rota
-            {
-                path: 'filmes',
-                loadChildren: () =>
-                    import('app/filmes/filmes.module').then(
-                        (m) => m.FilmesModule
-                    ),
-            },
-
             {
                 path: 'consultar',
                 loadChildren: () =>
