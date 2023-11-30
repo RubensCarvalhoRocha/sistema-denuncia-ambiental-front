@@ -12,6 +12,7 @@ import { DenunciarComponent } from './denunciar/denunciar.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { DenuncianteService } from './denunciante.service';
 
 
 const routes: Routes = [
@@ -36,6 +37,8 @@ const routes: Routes = [
     MatAutocompleteModule,
     FormsModule,
     MatSelectModule
-  ]
+  ],
+
+  providers: [DenuncianteService],
 })
 export class DenuncianteModule { }
