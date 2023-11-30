@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
+import { Denuncias } from 'app/models/Denuncias';
+
 
 @Component({
   selector: 'app-denunciar',
@@ -13,6 +15,14 @@ export class DenunciarComponent implements OnInit{
 
     alert: any;
     denunciaForm: UntypedFormGroup;
+
+    categorias = [
+        { id: 0, nome: 'FAUNA' },
+        { id: 1, nome: 'FLORA' },
+        { id: 2, nome: 'POLUIÇÃO' },
+        { id: 3, nome: 'ORDENAMENTO URBANO E PATRIMÔNIO CULTURAL' },
+        { id: 4, nome: 'ADMINISTRAÇÃO AMBIENTAL' }
+      ];
 
     /**
      * Constructor
@@ -33,7 +43,7 @@ export class DenunciarComponent implements OnInit{
      */
     ngOnInit(): void
     {
-        // Create the support form
+
         this.denunciaForm = this._formBuilder.group({
             provavelAutor   : ['', Validators.required],
             rua  : ['', Validators.required],
@@ -44,8 +54,8 @@ export class DenunciarComponent implements OnInit{
             titulo: ['', Validators.required],
             descricao: ['', Validators.required],
             latitude: ['', Validators.required],
-            longitude: ['', Validators.required]
-
+            longitude: ['', Validators.required],
+            categoriaPai: ['', Validators.required]
         });
     }
 

@@ -9,14 +9,18 @@ import { MatInputModule } from '@angular/material/input';
 import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
 import { DenunciarComponent } from './denunciar/denunciar.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 const routes: Routes = [
     { path: '', component: DenunciarComponent },
   ];
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    DenunciarComponent
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -27,7 +31,9 @@ const routes: Routes = [
     MatInputModule,
     FuseAlertModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    FormsModule,
   ]
 })
 export class DenuncianteModule { }
