@@ -133,6 +133,9 @@ export class DenunciarComponent implements OnInit {
   sendForm(): void {
     // Verifica se o formulário é válido antes de enviar
     if (this.denunciaForm.valid) {
+
+        console.log('Conteúdo do formulário:', this.denunciaForm.value);
+
         // Chama o serviço DenuncianteService para enviar os dados do formulário
         this.denuncianteService.postDenuncia(this.denunciaForm)
             .pipe(
