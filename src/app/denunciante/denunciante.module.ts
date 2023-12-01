@@ -13,7 +13,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
 import { DenuncianteService } from './denunciante.service';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const routes: Routes = [
     { path: '', component: DenunciarComponent },
@@ -36,7 +37,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatAutocompleteModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule
+
   ],
 
   providers: [DenuncianteService],

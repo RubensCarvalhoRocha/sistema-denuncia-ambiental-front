@@ -200,7 +200,7 @@
 
                     <!-- data-->
 
-                    <mat-form-field class="w-full">
+                    <!-- <mat-form-field class="w-full">
                         <input
                             matInput
                             [formControlName]="'data'"
@@ -214,6 +214,20 @@
                         >
                             Data é necessária
                         </mat-error>
+                    </mat-form-field> -->
+                    <mat-form-field>
+                        <mat-label>Data do ocorrido</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm.get('data').hasError('required')
+                            "
+                        >
+                            Data é necessária
+                        </mat-error>
+                        <input matInput [formControlName]="'data'" [required]="true" [matDatepicker]="picker"
+                            (click)="picker.open()">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
 
                     <!-- Titulo -->
