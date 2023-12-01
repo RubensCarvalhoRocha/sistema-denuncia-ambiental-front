@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
+import { catchError } from 'rxjs/operators';
  // Substitua pelo caminho correto
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { DenuncianteService } from '../denunciante.service';
 
 @Component({
@@ -31,14 +31,46 @@ export class DenunciarComponent implements OnInit {
     { id: 4, nome: 'ADMINISTRAÇÃO AMBIENTAL' }
   ];
 
-  subCategorias = [
-    { id: 0, nome: 'transporte e comercialização de animais' },
-    { id: 1, nome: 'Pesca ilegal' },
-    { id: 2, nome: 'Caça ilegal' },
-    { id: 3, nome: 'Ferir, praticar maus-tratos' },
-    { id: 4, nome: 'Experiências que possam causar dor' },
-    { id: 5, nome: 'Emissão de efluentes, substâncias tóxicas' }
-  ];
+  subcategoriasPorCategoria = {
+    0: [
+        { id: 0, nome: 'Transporte e comercialização de animais' },
+        { id: 1, nome: 'Pesca ilegal' },
+        { id: 2, nome: 'Caça ilegal' },
+        { id: 3, nome: 'Ferir, praticar maus-tratos' },
+        { id: 4, nome: 'Experiências que possam causar dor' },
+        { id: 5, nome: 'Emissão de efluentes, substâncias tóxicas' }
+    ],
+    1: [
+        { id: 6, nome: 'Destruir ou danificar florestas de preservação permanente' },
+        { id: 7, nome: 'Destruir ou danificar qualquer vegetação do Bioma Mata Atlântica.' },
+        { id: 8, nome: 'Cortar árvores em florestas de preservação permanente' },
+        { id: 9, nome: 'Fabricar, vender, transportar ou soltar balões que podem provocar incêndios.' },
+        { id: 10, nome: 'Danificar, por qualquer meio, plantas' },
+    ],
+
+    2: [
+        { id: 11, nome: 'Causar poluição atmosférica' },
+        { id: 12, nome: 'Dificultar ou impedir o uso público das praias.' },
+        { id: 13, nome: 'Realizar pesquisa, lavra ou extração de recursos minerais sem autorização legal.' },
+        { id: 14, nome: 'Produzir, processar,usar substância tóxica perigosa, ou nociva à saúde humana ou ao meio ambiente' },
+        { id: 15, nome: 'Construir, reformar, obras ou serviços potencialmente poluidores, sem licença.' },
+        { id: 16, nome: 'Disseminar doença ou praga que cause dano à agricultura, pecuária, fauna...' }
+      ],
+
+      3: [
+        { id: 17, nome: 'Pixação em áreas urbanas.' },
+        { id: 18, nome: 'Alterar o aspecto ou estrutura protegidos em razão do seu valor paisagístico, ecológico...' },
+        { id: 19, nome: 'Mineração, Ruído e Vibração Industrial.' },
+      ],
+
+      4:[
+        { id: 20, nome: 'Práticas como afirmações falsas ou enganosas.' },
+        { id: 21, nome: 'Concessões de licenças, autorizações pelos funcionários em desacordo com as normas ambientais.' },
+        { id: 22, nome: 'Outros' },
+      ]
+
+    };
+
 
   /**
    * Constructor
@@ -46,7 +78,6 @@ export class DenunciarComponent implements OnInit {
   constructor(
     private _formBuilder: UntypedFormBuilder,
     private denuncianteService: DenuncianteService,
-    private _snackBar: MatSnackBar
   ) {}
 
   // -----------------------------------------------------------------------------------------------------
@@ -78,42 +109,61 @@ export class DenunciarComponent implements OnInit {
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
 
+  onCategoriaChange() {
+    this.denunciaForm.get('categoriaFilha').setValue(null)
+  }
+
+  getSubcategorias(): any[] {
+    const categoriaSelecionada = this.denunciaForm.get('categoriaPai').value;
+    return this.subcategoriasPorCategoria[categoriaSelecionada] || [];
+  }
+
+
   /**
    * Clear the form
    */
   clearForm(): void {
     // Reset the form
     this.supportNgForm.resetForm();
-  }
+    }
 
   /**
    * Send the form
    */
   sendForm(): void {
-    // Envia os dados do formulário para o backend via POST
-    this.denuncianteService.postDenuncia(this.denunciaForm).subscribe(
-      () => {
-        console.log('Formulário enviado com sucesso!');
-        console.log('Formulário enviado:', this.denunciaForm.value);
+    // Verifica se o formulário é válido antes de enviar
+    if (this.denunciaForm.valid) {
+        // Chama o serviço DenuncianteService para enviar os dados do formulário
+        this.denuncianteService.postDenuncia(this.denunciaForm)
+            .pipe(
+                // Trata possíveis erros na chamada HTTP
+                catchError(error => {
+                    console.error('Error sending the form:', error);
+                    // Pode mostrar uma mensagem de erro para o usuário se desejar
+                    return [];
+                })
+            )
+            .subscribe(response => {
+                // Exibe uma mensagem de sucesso (ou de erro) para o usuário
+                this.alert = {
+                    type: response.success ? 'success' : 'error',
+                    message: response.message
+                };
 
-        // Mostra uma mensagem de sucesso
-        this._snackBar.open('Sua denúncia foi enviada com sucesso!', 'Fechar', {
-          duration: 5000,
-          panelClass: 'success-snackbar'
-        });
+                // Remove a mensagem após alguns segundos
+                setTimeout(() => {
+                    this.alert = null;
+                }, 5000);
 
-        // Limpa o formulário
-        this.clearForm();
-      },
-      (error) => {
-        console.error('Erro ao enviar o formulário:', error);
+                // Limpa o formulário se a denúncia foi enviada com sucesso
+                if (response.success) {
+                    this.clearForm();
+                }
+            });
+        } else {
+        // Se o formulário não for válido, você pode exibir uma mensagem ou tomar outra ação
+        console.warn('Form is not valid. Please fill in all required fields.');
+        }
+    }
 
-        // Mostra uma mensagem de erro
-        this._snackBar.open('Ocorreu um erro ao enviar sua denúncia. Por favor, tente novamente mais tarde.', 'Fechar', {
-          duration: 5000,
-          panelClass: 'error-snackbar'
-        });
-      }
-    );
-  }
 }

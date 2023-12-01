@@ -85,16 +85,25 @@
                     <mat-form-field class="w-full">
                         <mat-label>Município</mat-label>
                         <div>
-                          <mat-select [formControlName]="'municipio'">
-                            <mat-option *ngFor="let municipio of municipiosGoias" [value]="municipio">
-                              {{ municipio }}
-                            </mat-option>
-                          </mat-select>
+                            <mat-select [formControlName]="'municipio'">
+                                <mat-option
+                                    *ngFor="let municipio of municipiosGoias"
+                                    [value]="municipio"
+                                >
+                                    {{ municipio }}
+                                </mat-option>
+                            </mat-select>
                         </div>
-                        <mat-error *ngIf="denunciaForm.get('municipio').hasError('required')">
-                          Município é necessário
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('municipio')
+                                    .hasError('required')
+                            "
+                        >
+                            Município é necessário
                         </mat-error>
-                      </mat-form-field>
+                    </mat-form-field>
                     <!-- CEP-->
 
                     <mat-form-field class="w-full">
@@ -226,37 +235,41 @@
                     </mat-form-field>
 
                     <!-- Categoria -->
-
                     <mat-form-field class="w-full">
                         <mat-label>Categoria</mat-label>
                         <div>
-                          <mat-select [formControlName]="'categoriaPai'">
-                            <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
-                              {{ categoria.nome }}
-                            </mat-option>
-                          </mat-select>
+                            <mat-select
+                                [formControl]="denunciaForm.get('categoriaPai')"
+                                (change)="onCategoriaChange()"
+                            >
+                                <mat-option
+                                    *ngFor="let categoria of categorias"
+                                    [value]="categoria.id"
+                                >
+                                    {{ categoria.nome }}
+                                </mat-option>
+                            </mat-select>
                         </div>
-                        <mat-error *ngIf="denunciaForm.get('categoriaPai').hasError('required')">
-                          Categoria é necessária
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('categoriaPai')
+                                    .hasError('required')
+                            "
+                        >
+                            Categoria é necessária
                         </mat-error>
-                      </mat-form-field>
+                    </mat-form-field>
 
-
-                    <!-- Sub-Categoria -->
-
+                    <!-- Subcategoria -->
                     <mat-form-field class="w-full">
-                        <mat-label>Sub-Categoria</mat-label>
-                        <div>
-                          <mat-select [formControlName]="'categoriaFilha'">
-                            <mat-option *ngFor="let subCategoria of subCategorias" [value]="subCategoria.id">
-                              {{ subCategoria.nome }}
+                        <mat-label>Subcategoria</mat-label>
+                        <mat-select [formControl]="denunciaForm.get('categoriaFilha')">
+                            <mat-option *ngFor="let subcategoria of getSubcategorias()" [value]="subcategoria.id">
+                                {{ subcategoria.nome }}
                             </mat-option>
-                          </mat-select>
-                        </div>
-                        <mat-error *ngIf="denunciaForm.get('categoriaFilha').hasError('required')">
-                         Sub-Categoria é necessária
-                        </mat-error>
-                      </mat-form-field>
+                        </mat-select>
+                    </mat-form-field>
 
                     <!-- Upload de Imagens -->
 
