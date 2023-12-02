@@ -9,6 +9,7 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import notyf from 'app/utilss/utilss';
 import { AnalistaService } from '../analista.service';
 import { Denuncias } from 'app/models/Denuncias';
+import { AnalisarComponent } from '../analisar/analisar.component';
 @Component({
   selector: 'app-consulta-analista',
   templateUrl: './consulta-analista.component.html',
@@ -18,7 +19,7 @@ export class ConsultaAnalistaComponent {
     @ViewChild('denunciasPaginator', { read: MatPaginator }) public denunciasPaginator: MatPaginator;
     @ViewChild('denunciasTable', { read: MatSort }) public denunciasTableMatSort: MatSort;
     public denunciasDataSource: MatTableDataSource<any> = new MatTableDataSource();
-    public denunciasTableColumns: string[] = ['id', 'municipio', 'categoriaPai', 'data'];
+    public denunciasTableColumns: string[] = ['id', 'municipio', 'categoriaPai', 'data', 'acoes'];
 
     denuncias: Denuncias[] = [];
 
@@ -68,6 +69,13 @@ export class ConsultaAnalistaComponent {
     //     }
     //   });
     // }
+    openDialog(): void {
+        const dialogRef = this._dialog.open(AnalisarComponent, {
+          width: '80%',
+          height: '80%',
+          disableClose: true,
+        });
+      }
 
   }
 
