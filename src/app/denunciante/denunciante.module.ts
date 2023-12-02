@@ -15,6 +15,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { DenuncianteService } from './denunciante.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 const routes: Routes = [
     { path: '', component: DenunciarComponent },
@@ -40,8 +43,8 @@ const routes: Routes = [
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule
-
+    MatButtonModule,
+    NgxMaskModule.forRoot(),
   ],
 
   providers: [DenuncianteService],
