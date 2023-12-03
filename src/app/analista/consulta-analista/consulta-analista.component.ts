@@ -39,36 +39,6 @@ export class ConsultaAnalistaComponent {
       });
     }
 
-    // deletar(id: number): void {
-    //   const confirmation = this._fuseConfirmationService.open({
-    //     title: 'Excluir registro...',
-    //     message: `Tem certeza que deseja excluir definitivamente este registro?`,
-    //     actions: {
-    //       cancel: {
-    //         label: 'Cancelar',
-    //       },
-    //       confirm: {
-    //         label: 'Deletar',
-    //         color: 'warn',
-    //       },
-    //     },
-    //   });
-
-    //   confirmation.afterClosed().subscribe((result) => {
-    //     if (result === 'confirmed') {
-    //       this.analistaService
-    //         .deleteFilme(id)
-    //         .subscribe(() => {
-    //           notyf.success('Seu certificado foi exluido com sucesso!');
-    //           this.analistaService.getDenuncias().subscribe({});
-    //         },
-    //         (error) => {
-    //           console.error(error);
-    //           notyf.error('Algo deu errado ao excluir seu certificado.');
-    //         });
-    //     }
-    //   });
-    // }
     fazerRelatorio(denuncias?: Denuncias): void {
         const dialogRef = this._dialog.open(AnalisarComponent, {
           width: '90%',
@@ -83,6 +53,8 @@ export class ConsultaAnalistaComponent {
           }
         });
       }
+
+
 
   }
 

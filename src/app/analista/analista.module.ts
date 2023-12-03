@@ -20,6 +20,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { AnalistaService } from './analista.service';
+import { EditarComponent } from './editar/editar.component';
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
@@ -28,7 +29,7 @@ const routes: Routes = [
   ];
 
 @NgModule({
-  declarations: [ConsultaAnalistaComponent, AnalisarComponent],
+  declarations: [ConsultaAnalistaComponent, AnalisarComponent, EditarComponent],
   imports: [
     CommonModule,
     CommonModule,
