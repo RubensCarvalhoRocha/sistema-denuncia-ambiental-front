@@ -20,16 +20,19 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { AnalistaService } from './analista.service';
+import { VisualisarComponent } from './visualisar/visualisar.component';
+
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 const routes: Routes = [
     { path: '', component: ConsultaAnalistaComponent },
     { path: 'analisar', component: AnalisarComponent },
+    { path: 'visualisar', component: VisualisarComponent },
   ];
 
 @NgModule({
-  declarations: [ConsultaAnalistaComponent, AnalisarComponent],
+  declarations: [ConsultaAnalistaComponent, AnalisarComponent, VisualisarComponent],
   imports: [
     CommonModule,
     CommonModule,
