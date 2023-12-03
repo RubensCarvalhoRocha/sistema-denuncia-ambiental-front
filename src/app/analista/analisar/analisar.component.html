@@ -32,7 +32,7 @@
 
                 <mat-form-field>
                     <mat-label>Protocolo</mat-label>
-                    <input matInput [(ngModel)]="denuncias.id" />
+                    <input matInput [value]="denuncias.id" readonly />
                   </mat-form-field>
 
 
@@ -48,6 +48,7 @@
                             </mat-select>
                         </div>
                     </mat-form-field>
+
                     <!-- Parecer técnico -->
 
                     <div class="flex">
