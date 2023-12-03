@@ -62,6 +62,13 @@ export const appRoutes: Route[] = [
                         (m) => m.AuthSignUpModule
                     ),
             },
+            {
+                path: 'denunciaAnonima',
+                loadChildren: () =>
+                    import('app/modules/auth/sign-up/sign-up.module').then(
+                        (m) => m.
+                    ),
+            },
         ],
     },
 

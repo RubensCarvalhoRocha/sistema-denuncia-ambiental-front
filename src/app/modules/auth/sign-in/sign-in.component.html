@@ -98,7 +98,7 @@
                 <button class="fuse-mat-button-large w-full mt-6 bg-black text-white"
                     mat-flat-button
                     [disabled]="signInForm.disabled"
-                    (click)="signIn()">
+                    routerLink="denunciaAnonima">
                     <strong *ngIf="!signInForm.disabled">Anônima</strong>
                     <mat-progress-spinner
                     *ngIf="signInForm.disabled"
