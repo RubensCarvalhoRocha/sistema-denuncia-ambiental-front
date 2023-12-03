@@ -3,6 +3,8 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { InitialDataResolver } from 'app/app.resolvers';
+import { DenunciaAnonimaComponent } from './denuncia-anonima/denuncia-anonima.component';
+import { DenunciaAnonimaModule } from './denuncia-anonima/denuncia-anonima.module';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -62,6 +64,18 @@ export const appRoutes: Route[] = [
                         (m) => m.AuthSignUpModule
                     ),
             },
+        ],
+    },
+
+    {
+        path: '',
+        canMatch: [NoAuthGuard],
+        component: LayoutComponent,
+        data: {
+            layout: 'empty',
+        },
+        children: [
+            { path: '', pathMatch: 'full', redirectTo: 'denunciaAnonima' }, // Redireciona para denunciaAnonima diretamente
         ],
     },
 

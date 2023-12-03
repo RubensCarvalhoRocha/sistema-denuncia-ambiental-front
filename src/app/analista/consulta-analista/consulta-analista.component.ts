@@ -9,6 +9,7 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import notyf from 'app/utilss/utilss';
 import { AnalistaService } from '../analista.service';
 import { Denuncias } from 'app/models/Denuncias';
+import { AnalisarComponent } from '../analisar/analisar.component';
 @Component({
   selector: 'app-consulta-analista',
   templateUrl: './consulta-analista.component.html',
@@ -18,7 +19,7 @@ export class ConsultaAnalistaComponent {
     @ViewChild('denunciasPaginator', { read: MatPaginator }) public denunciasPaginator: MatPaginator;
     @ViewChild('denunciasTable', { read: MatSort }) public denunciasTableMatSort: MatSort;
     public denunciasDataSource: MatTableDataSource<any> = new MatTableDataSource();
-    public denunciasTableColumns: string[] = ['id', 'municipio', 'categoriaPai', 'data'];
+    public denunciasTableColumns: string[] = ['id', 'municipio', 'categoriaPai', 'status', 'data', 'acoes'];
 
     denuncias: Denuncias[] = [];
 
@@ -37,37 +38,6 @@ export class ConsultaAnalistaComponent {
       this._changeDetectorRef.detectChanges();
       });
     }
-
-    // deletar(id: number): void {
-    //   const confirmation = this._fuseConfirmationService.open({
-    //     title: 'Excluir registro...',
-    //     message: `Tem certeza que deseja excluir definitivamente este registro?`,
-    //     actions: {
-    //       cancel: {
-    //         label: 'Cancelar',
-    //       },
-    //       confirm: {
-    //         label: 'Deletar',
-    //         color: 'warn',
-    //       },
-    //     },
-    //   });
-
-    //   confirmation.afterClosed().subscribe((result) => {
-    //     if (result === 'confirmed') {
-    //       this.analistaService
-    //         .deleteFilme(id)
-    //         .subscribe(() => {
-    //           notyf.success('Seu certificado foi exluido com sucesso!');
-    //           this.analistaService.getDenuncias().subscribe({});
-    //         },
-    //         (error) => {
-    //           console.error(error);
-    //           notyf.error('Algo deu errado ao excluir seu certificado.');
-    //         });
-    //     }
-    //   });
-    // }
 
   }
 

@@ -14,6 +14,9 @@ import { authSignupRoutes } from 'app/modules/auth/sign-up/sign-up.routing';
 
 import {FormsModule} from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
+
+export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
     declarations: [
         AuthSignUpComponent
@@ -31,7 +34,8 @@ import {MatSelectModule} from '@angular/material/select';
         SharedModule,
 
         MatSelectModule,//combobox
-        FormsModule
+        FormsModule,
+        NgxMaskModule.forRoot(),
     ]
 })
 export class AuthSignUpModule

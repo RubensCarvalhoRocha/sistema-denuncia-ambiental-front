@@ -38,7 +38,7 @@
                 <!-- CPF field -->
                 <mat-form-field class="w-full">
                     <mat-label>CPF</mat-label>
-                    <input id="CPF" matInput [formControlName]="'CPF'" />
+                    <input id="CPF" mask="000.000.000-00" matInput [formControlName]="'CPF'" />
                     <mat-error
                         *ngIf="signUpForm.get('name').hasError('required')"
                     >
@@ -103,6 +103,7 @@
                         id="telefone"
                         matInput
                         [formControlName]="'telefone'"
+                        mask="(00) 00000-0000"
                     />
                     <mat-error
                         *ngIf="signUpForm.get('name').hasError('required')"

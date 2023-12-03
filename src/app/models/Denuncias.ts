@@ -16,6 +16,9 @@ export class Denuncias {
     public foto1: string;
     public foto2: string;
     public foto3: string;
+    public status: number;
+    public parecerTecnico: string;
+
     public usuario: {
       id: number;
       nome: string;
@@ -45,6 +48,9 @@ export class Denuncias {
         this.foto1 = denuncia.foto1;
         this.foto2 = denuncia.foto2;
         this.foto3 = denuncia.foto3;
+        this.status = denuncia.status;
+        this.parecerTecnico = denuncia.parecerTecnico;
+
         this.usuario = {
           id: denuncia.usuario.id,
           nome: denuncia.usuario.nome,
@@ -71,6 +77,9 @@ export class Denuncias {
         this.foto1 = null;
         this.foto2 = null;
         this.foto3 = null;
+        this.status = null;
+        this.parecerTecnico = null;
+
         this.usuario = {
           id: null,
           nome: null,
