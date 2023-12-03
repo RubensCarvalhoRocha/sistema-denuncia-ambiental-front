@@ -50,21 +50,14 @@
                     </mat-form-field>
                     <!-- Parecer técnico -->
 
-                    <mat-form-field class="w-full">
-                        <input
-                            matInput
-                            [formControlName]="'parecerTecnico'"
-                            [required]="true"
-                        />
-                        <mat-label>Parecer Técnico</mat-label>
-                        <!-- <mat-error
-                            *ngIf="
-                                analiseForm.get('parecerTecnico').hasError('required')
-                            "
-                        >
-                            Parecer técnico é nescessário
-                        </mat-error> -->
-                    </mat-form-field>
+                    <div class="flex">
+                        <mat-form-field
+                            class="flex-auto">
+                            <mat-label>Parecer Técnico</mat-label>
+                            <textarea matInput [formControlName]="'parecerTecnico'"
+                            [required]="true"></textarea>
+                        </mat-form-field>
+                    </div>
 
                     <!-- Botoes -->
 
