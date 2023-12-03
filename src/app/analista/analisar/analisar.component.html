@@ -41,26 +41,13 @@
                     <mat-form-field class="w-full">
                         <mat-label>Status da Denuncia</mat-label>
                         <div>
-                            <mat-select [formControlName]="'status'">
-                                <mat-option
-                                    *ngFor="let s of status"
-                                    [value]="s"
-                                >
-                                    {{ s }}
+                            <mat-select [(ngModel)]="currentStatus" [formControlName]="'status'">
+                                <mat-option *ngFor="let s of status" [value]="s.id">
+                                    {{ s.nome }}
                                 </mat-option>
                             </mat-select>
                         </div>
-                        <mat-error
-                            *ngIf="
-                                analiseForm
-                                    .get('s')
-                                    .hasError('required')
-                            "
-                        >
-                            Status é necessário
-                        </mat-error>
                     </mat-form-field>
-
                     <!-- Parecer técnico -->
 
                     <mat-form-field class="w-full">
@@ -70,13 +57,13 @@
                             [required]="true"
                         />
                         <mat-label>Parecer Técnico</mat-label>
-                        <mat-error
+                        <!-- <mat-error
                             *ngIf="
                                 analiseForm.get('parecerTecnico').hasError('required')
                             "
                         >
                             Parecer técnico é nescessário
-                        </mat-error>
+                        </mat-error> -->
                     </mat-form-field>
 
                     <!-- Botoes -->

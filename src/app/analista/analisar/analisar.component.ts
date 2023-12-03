@@ -18,6 +18,8 @@ export class AnalisarComponent implements OnInit{
 
     public denuncias: Denuncias = new Denuncias();
 
+    currentStatus: number;
+
     status = [
         { id: 0, nome: 'EM ABERTO' },
         { id: 1, nome: 'EM ANDAMENTO' },
@@ -34,6 +36,7 @@ export class AnalisarComponent implements OnInit{
           parecerTecnico: ['', Validators.required],
           status: ['', Validators.required],
         });
+        this.currentStatus = this.denuncias.status
       }
 
       sendForm(): void {
