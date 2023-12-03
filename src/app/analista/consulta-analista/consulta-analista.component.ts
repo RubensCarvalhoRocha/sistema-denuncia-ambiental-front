@@ -19,7 +19,7 @@ export class ConsultaAnalistaComponent {
     @ViewChild('denunciasPaginator', { read: MatPaginator }) public denunciasPaginator: MatPaginator;
     @ViewChild('denunciasTable', { read: MatSort }) public denunciasTableMatSort: MatSort;
     public denunciasDataSource: MatTableDataSource<any> = new MatTableDataSource();
-    public denunciasTableColumns: string[] = ['id', 'municipio', 'categoriaPai', 'data', 'acoes'];
+    public denunciasTableColumns: string[] = ['id', 'municipio', 'categoriaPai', 'status', 'data', 'acoes'];
 
     denuncias: Denuncias[] = [];
 
@@ -69,11 +69,18 @@ export class ConsultaAnalistaComponent {
     //     }
     //   });
     // }
-    openDialog(): void {
+    fazerRelatorio(denuncias?: Denuncias): void {
         const dialogRef = this._dialog.open(AnalisarComponent, {
-          width: '80%',
-          height: '80%',
-          disableClose: true,
+          width: '90%',
+          height: 'auto',
+          data: {
+            denuncias,
+          },
+        });
+        dialogRef.afterClosed().subscribe((resultado: boolean) => {
+          if (resultado) {
+            this.analistaService.getDenuncias().subscribe({});
+          }
         });
       }
 
