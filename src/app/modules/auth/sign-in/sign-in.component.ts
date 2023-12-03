@@ -45,7 +45,7 @@ export class AuthSignInComponent implements OnInit
     {
         // Create the form
         this.signInForm = this._formBuilder.group({
-            cpf     : ['hughes.brian@company.com', [Validators.required, Validators.email]],
+            email     : ['hughes.brian@company.com', [Validators.required, Validators.email]],
             password  : ['admin', Validators.required],
             rememberMe: ['']
         });
@@ -98,7 +98,7 @@ export class AuthSignInComponent implements OnInit
                     // Set the alert
                     this.alert = {
                         type   : 'error',
-                        message: 'CPF ou Senha incorretos'
+                        message: 'Wrong email or password'
                     };
 
                     // Show the alert

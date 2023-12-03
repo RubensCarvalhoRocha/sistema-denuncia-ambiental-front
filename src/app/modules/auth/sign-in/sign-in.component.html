@@ -32,18 +32,18 @@
                 [formGroup]="signInForm"
                 #signInNgForm="ngForm">
 
-                <!-- CPF field -->
+                <!-- Email field -->
                 <mat-form-field class="w-full">
                     <mat-label>CPF</mat-label>
                     <input
-                        id="cpf"
+                        id="email"
                         matInput
-                        [formControlName]="'cpf'">
-                    <mat-error *ngIf="signInForm.get('cpf').hasError('required')">
-                        CPF é nescessário
+                        [formControlName]="'email'">
+                    <mat-error *ngIf="signInForm.get('email').hasError('required')">
+                        Email é nescessário
                     </mat-error>
-                    <mat-error *ngIf="signInForm.get('cpf').hasError('cpf')">
-                       Por favor entre com um CPF valido
+                    <mat-error *ngIf="signInForm.get('email').hasError('email')">
+                       Por favor entre com um email valido
                     </mat-error>
                 </mat-form-field>
 
