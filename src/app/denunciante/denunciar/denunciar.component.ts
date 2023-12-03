@@ -4,6 +4,8 @@ import { fuseAnimations } from '@fuse/animations';
 import { catchError } from 'rxjs/operators';
  // Substitua pelo caminho correto
 import { DenuncianteService } from '../denunciante.service';
+import { AdicionarFotoComponent } from '../adicionar-foto/adicionar-foto.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-denunciar',
@@ -16,6 +18,11 @@ export class DenunciarComponent implements OnInit {
 
   alert: any;
   denunciaForm: UntypedFormGroup;
+
+  loadingSave: boolean;
+  concluido: boolean = false;
+  loading: boolean = false;
+  droppedFileName: string = '';
 
   municipiosGoias = [
     'Abadia de Goiás',
@@ -277,6 +284,7 @@ export class DenunciarComponent implements OnInit {
   constructor(
     private _formBuilder: UntypedFormBuilder,
     private denuncianteService: DenuncianteService,
+    private _dialog: MatDialog,
   ) {}
 
   // -----------------------------------------------------------------------------------------------------
@@ -367,5 +375,13 @@ export class DenunciarComponent implements OnInit {
         console.warn('Form is not valid. Please fill in all required fields.');
         }
     }
+
+    openDialog(): void {
+        const dialogRef = this._dialog.open(AdicionarFotoComponent, {
+          width: '80%',
+          height: 'auto',
+          disableClose: true,
+        });
+      }
 
 }
