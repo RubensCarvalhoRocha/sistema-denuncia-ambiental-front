@@ -15,15 +15,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { getPortuguesePaginatorIntl } from './pt-br-paginator-intl';
-import { ConsultaAnalistaComponent } from './analista/consulta-analista/consulta-analista.component';
 import { MatTableModule } from '@angular/material/table';
-import { DenunciarComponent } from './denunciante/denunciar/denunciar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { DenunciaAnonimaComponent } from './auth/denuncia-anonima/denuncia-anonima.component'
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
@@ -35,7 +32,6 @@ const routerConfig: ExtraOptions = {
 @NgModule({
     declarations: [
         AppComponent,
-        DenunciaAnonimaComponent,
     ],
     imports     : [
         BrowserModule,

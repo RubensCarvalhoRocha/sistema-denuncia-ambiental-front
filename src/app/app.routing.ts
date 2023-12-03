@@ -65,8 +65,8 @@ export const appRoutes: Route[] = [
             {
                 path: 'denunciaAnonima',
                 loadChildren: () =>
-                    import('app/modules/auth/sign-up/sign-up.module').then(
-                        (m) => m.
+                    import('app/modules/auth/denuncia-anonima/denuncia-anonima.module').then(
+                        (m) => m.DenunciaAnonimaModule
                     ),
             },
         ],
