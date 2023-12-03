@@ -25,6 +25,7 @@ export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 const routes: Routes = [
     { path: '', component: ConsultaAnalistaComponent },
+    { path: 'analisar', component: AnalisarComponent },
   ];
 
 @NgModule({

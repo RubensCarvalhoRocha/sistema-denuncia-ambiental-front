@@ -39,37 +39,5 @@ export class ConsultaAnalistaComponent {
       });
     }
 
-    fazerRelatorio(denuncias?: Denuncias): void {
-        const dialogRef = this._dialog.open(AnalisarComponent, {
-          width: '90%',
-          height: 'auto',
-          data: {
-            denuncias,
-          },
-        });
-        dialogRef.afterClosed().subscribe((resultado: boolean) => {
-          if (resultado) {
-            this.analistaService.getDenuncias().subscribe({});
-          }
-        });
-      }
-
-    //   editarDenuncia(denuncias?: Denuncias): void {
-    //     const dialogRef = this._dialog.open(EditarComponent, {
-    //       width: '90%',
-    //       height: 'auto',
-    //       data: {
-    //         denuncias,
-    //       },
-    //     });
-    //     dialogRef.afterClosed().subscribe((resultado: boolean) => {
-    //       if (resultado) {
-    //         this.analistaService.getDenuncias().subscribe({});
-    //       }
-    //     });
-    //   }
-
-    editarDenuncia(){}
-
   }
 
