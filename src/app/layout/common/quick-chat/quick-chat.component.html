@@ -26,13 +26,13 @@
             <ng-container *ngIf="opened && selectedChat">
                 <div class="flex flex-auto items-center ml-3">
                     <div class="relative flex flex-0 items-center justify-center w-10 h-10">
-                        <ng-container *ngIf="chat.contact.avatar">
+                        <ng-container *ngIf="chat.contact?.avatar">
                             <img
                                 class="w-full h-full rounded-full object-cover"
-                                [src]="chat.contact.avatar"
+                                [src]="chat.contact?.avatar"
                                 alt="Contact avatar"/>
                         </ng-container>
-                        <ng-container *ngIf="!chat.contact.avatar">
+                        <ng-container *ngIf="!chat.contact?.avatar">
                             <div class="flex items-center justify-center w-full h-full rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                                 {{chat.contact.name.charAt(0)}}
                             </div>
@@ -67,13 +67,13 @@
                                         class="absolute bottom-0 right-0 flex-0 w-2 h-2 -ml-0.5 rounded-full ring-2 ring-bg-card dark:ring-gray-900 bg-primary dark:bg-primary-500 text-on-primary"
                                         [class.ring-primary-50]="selectedChat && selectedChat.id === chat.id"></div>
                                 </ng-container>
-                                <ng-container *ngIf="chat.contact.avatar">
+                                <ng-container *ngIf="chat.contact?.avatar">
                                     <img
                                         class="w-full h-full rounded-full object-cover"
-                                        [src]="chat.contact.avatar"
+                                        [src]="chat.contact?.avatar"
                                         alt="Contact avatar"/>
                                 </ng-container>
-                                <ng-container *ngIf="!chat.contact.avatar">
+                                <ng-container *ngIf="!chat.contact?.avatar">
                                     <div class="flex items-center justify-center w-full h-full rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200">
                                         {{chat.contact.name.charAt(0)}}
                                     </div>

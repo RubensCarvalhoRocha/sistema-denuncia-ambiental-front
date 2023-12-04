@@ -126,11 +126,11 @@
     <div class="flex items-center">
         <div class="flex shrink-0 items-center justify-center w-8 h-8 rounded-full overflow-hidden bg-primary-100 dark:bg-primary-800">
             <img
-                *ngIf="result.avatar"
-                [src]="result.avatar">
+                *ngIf="result?.avatar"
+                [src]="result?.avatar">
             <mat-icon
                 class="m-0 icon-size-5 text-primary dark:text-primary-400"
-                *ngIf="!result.avatar"
+                *ngIf="!result?.avatar"
                 [svgIcon]="'heroicons_outline:user-circle'"></mat-icon>
         </div>
         <div class="ml-3 truncate">

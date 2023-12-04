@@ -314,7 +314,7 @@ export class ContactsMockApi
 
                 // Get the id and avatar
                 const id = request.body.id;
-                const avatar = request.body.avatar;
+                const avatar = request.body?.avatar;
 
                 // Prepare the updated contact
                 let updatedContact: any = null;
