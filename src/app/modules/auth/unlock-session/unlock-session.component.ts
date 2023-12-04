@@ -23,7 +23,7 @@ export class AuthUnlockSessionComponent implements OnInit
     name: string;
     showAlert: boolean = false;
     unlockSessionForm: UntypedFormGroup;
-    private _email: string;
+    private _cpf: string;
 
     /**
      * Constructor
@@ -50,7 +50,7 @@ export class AuthUnlockSessionComponent implements OnInit
         // Get the user's name
         this._userService.user$.subscribe((user) => {
             this.name = user.name;
-            this._email = user.email;
+            this._cpf = user.cpf;
         });
 
         // Create the form
@@ -87,7 +87,7 @@ export class AuthUnlockSessionComponent implements OnInit
         this.showAlert = false;
 
         this._authService.unlockSession({
-            email   : this._email ?? '',
+            cpf   : this._cpf ?? '',
             password: this.unlockSessionForm.get('password').value
         }).subscribe(
             () => {

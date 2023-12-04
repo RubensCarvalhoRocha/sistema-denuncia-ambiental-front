@@ -8,6 +8,7 @@ import { UserService } from 'app/core/user/user.service';
 export class AuthService {
     private _authenticated: boolean = false;
 
+    private url: string = 'http://localhost:8080';
     /**
      * Constructor
      */
@@ -60,8 +61,8 @@ export class AuthService {
      * @param credentials
      */
 
-    // 
-    // 
+    //
+    //
     // ==== replica esse cara aqui e pega resposta do login e seta no localstorage
     signIn(credentials: { cpf: string; password: string }): Observable<any> {
         // Throw error, if the user is already logged in
@@ -69,7 +70,7 @@ export class AuthService {
             return throwError('User is already logged in.');
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+        return this._httpClient.post(`${this.url}/api/auth/login`, credentials).pipe(
             switchMap((response: any) => {
 
                 // Store the access token in the local storage
@@ -153,9 +154,15 @@ export class AuthService {
      *
      * @param credentials
      */
-    unlockSession(credentials: { email: string; password: string }): Observable<any> {
-        return this._httpClient.post('api/auth/unlock-session', credentials);
-    }
+
+                                //toquei email p cpf
+  unlockSession(credentials: {
+  cpf: string;
+  password: string;
+}): Observable<any> {
+  return this._httpClient.post('api/auth/unlock-session', credentials);
+}
+
 
     /**
      * Check the authentication status

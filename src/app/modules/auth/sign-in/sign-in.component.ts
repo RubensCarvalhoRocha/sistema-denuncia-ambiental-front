@@ -45,9 +45,8 @@ export class AuthSignInComponent implements OnInit
     {
         // Create the form
         this.signInForm = this._formBuilder.group({
-            email     : ['hughes.brian@company.com', [Validators.required, Validators.email]],
-            password  : ['admin', Validators.required],
-            rememberMe: ['']
+            cpf     : ['519.265.140-92', [Validators.required]],
+            password  : ['senha123', Validators.required],
         });
     }
 
@@ -58,52 +57,67 @@ export class AuthSignInComponent implements OnInit
     /**
      * Sign in
      */
-    signIn(): void
-    {
-        // Return if the form is invalid
-        if ( this.signInForm.invalid )
-        {
-            return;
-        }
+   /**
+ * Sign in
+ */
+signIn(): void {
+    console.log(this.signInForm);
+    // Return if the form is invalid
+    if ( this.signInForm.invalid ) {
+        return;
+    }
 
-        // Disable the form
-        this.signInForm.disable();
+    // Formata o CPF antes de enviar para o serviço
+    const cpfFormatado = this.formatarCPF(this.signInForm.get('cpf').value);
 
-        // Hide the alert
-        this.showAlert = false;
+    // Disable the form
+    this.signInForm.disable();
 
-        // Sign in
-        this._authService.signIn(this.signInForm.value)
-            .subscribe(
-                () => {
+    // Hide the alert
+    this.showAlert = false;
 
-                    // Set the redirect url.
-                    // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
-                    // to the correct page after a successful sign in. This way, that url can be set via
-                    // routing file and we don't have to touch here.
-                    const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
+    // Sign in
+    this._authService.signIn({ cpf: cpfFormatado, password: this.signInForm.get('password').value })
+        .subscribe(
+            () => {
+                // Set the redirect url.
+                // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
+                // to the correct page after a successful sign in. This way, that url can be set via
+                // routing file and we don't have to touch here.
+                const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
 
-                    // Navigate to the redirect url
-                    this._router.navigateByUrl(redirectURL);
+                // Navigate to the redirect url
+                this._router.navigateByUrl(redirectURL);
+            },
+            (response) => {
+                // Re-enable the form
+                this.signInForm.enable();
 
-                },
-                (response) => {
+                // Reset the form
+                this.signInNgForm.resetForm();
 
-                    // Re-enable the form
-                    this.signInForm.enable();
+                // Set the alert
+                this.alert = {
+                    type   : 'error',
+                    message: ' CPF ou senha incorretos'
+                };
 
-                    // Reset the form
-                    this.signInNgForm.resetForm();
+                // Show the alert
+                this.showAlert = true;
+            }
+        );
+}
 
-                    // Set the alert
-                    this.alert = {
-                        type   : 'error',
-                        message: 'Wrong email or password'
-                    };
 
-                    // Show the alert
-                    this.showAlert = true;
-                }
-            );
+     /**
+     * Formata o CPF removendo caracteres não numéricos e adicionando a pontuação correta.
+     * Exemplo: '75053950172' -> '750.539.501-72'
+     *
+     * @param cpf O CPF a ser formatado
+     * @returns O CPF formatado
+     */
+     private formatarCPF(cpf: string): string {
+        const cpfNumerico = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+        return cpfNumerico.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'); // Formata o CPF
     }
 }

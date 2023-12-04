@@ -67,17 +67,17 @@ export const appRoutes: Route[] = [
         ],
     },
 
-    {
-        path: '',
-        canMatch: [NoAuthGuard],
-        component: LayoutComponent,
-        data: {
-            layout: 'empty',
-        },
-        children: [
-            { path: '', pathMatch: 'full', redirectTo: 'denunciaAnonima' }, // Redireciona para denunciaAnonima diretamente
-        ],
-    },
+    // {
+    //     path: '',
+    //     canMatch: [NoAuthGuard],
+    //     component: LayoutComponent,
+    //     data: {
+    //         layout: 'empty',
+    //     },
+    //     children: [
+    //         { path: '', pathMatch: 'full', redirectTo: 'denunciaAnonima' }, // Redireciona para denunciaAnonima diretamente
+    //     ],
+    // },
 
     // Auth routes for authenticated users
     {

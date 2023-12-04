@@ -11,6 +11,9 @@ import { FuseAlertModule } from '@fuse/components/alert';
 import { SharedModule } from 'app/shared/shared.module';
 import { AuthSignInComponent } from 'app/modules/auth/sign-in/sign-in.component';
 import { authSignInRoutes } from 'app/modules/auth/sign-in/sign-in.routing';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+
+export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 @NgModule({
     declarations: [
@@ -26,7 +29,8 @@ import { authSignInRoutes } from 'app/modules/auth/sign-in/sign-in.routing';
         MatProgressSpinnerModule,
         FuseCardModule,
         FuseAlertModule,
-        SharedModule
+        SharedModule,
+        NgxMaskModule
     ]
 })
 export class AuthSignInModule
