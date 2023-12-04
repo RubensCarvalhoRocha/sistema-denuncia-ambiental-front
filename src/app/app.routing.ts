@@ -19,6 +19,7 @@ export const appRoutes: Route[] = [
     // path. Below is another redirection for that path to redirect the user to the desired
     // location. This is a small convenience to keep all main routes together here on this file.
     { path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'menu' },
+    {path: 'denuncia-anonima-redirect', pathMatch: 'full', redirectTo: 'anonima'},
 
     // Auth routes for guests
     {
@@ -62,6 +63,14 @@ export const appRoutes: Route[] = [
                 loadChildren: () =>
                     import('app/modules/auth/sign-up/sign-up.module').then(
                         (m) => m.AuthSignUpModule
+                    ),
+            },
+
+            {
+                path: 'anonima',
+                loadChildren: () =>
+                    import('app/denuncia-anonima/denuncia-anonima.module').then(
+                        (m) => m.DenunciaAnonimaModule
                     ),
             },
         ],

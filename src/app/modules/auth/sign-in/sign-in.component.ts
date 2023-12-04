@@ -141,4 +141,14 @@ export class AuthSignInComponent implements OnInit {
             '$1.$2.$3-$4'
         ); // Formata o CPF
     }
+
+    denunciaAnonima(){
+
+        const redirectURLAnonima =
+                        this._activatedRoute.snapshot.queryParamMap.get(
+                            'redirectURLAnonima'
+                        ) || '/denuncia-anonima-redirect';
+                    // Navigate to the redirect url
+                    this._router.navigateByUrl(redirectURLAnonima);
+    }
 }
