@@ -16,6 +16,10 @@ export class AnalistaService {
     return this.Http.get<Denuncias[]>(`${this.url}/denuncia`); // For retrieving all filmes
     }
 
+    getDetalhesDenuncia(id: number): Observable<any> {
+        return this.Http.get(`${this.url}/denuncia/${id}`);
+      }
+
     patchDenuncia(idDenuncia: number, analiseForm: any): Observable<any> {
         const url = `${this.url}/denuncia/parecer-tecnico/${idDenuncia}`;
         return this.Http.patch(url, analiseForm);

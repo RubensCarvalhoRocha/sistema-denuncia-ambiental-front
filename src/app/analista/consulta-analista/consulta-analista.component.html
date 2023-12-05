@@ -96,7 +96,7 @@
                     <button mat-icon-button routerLink="analisar">
                       <mat-icon [matTooltip]="'Analisar'" [svgIcon]="'assignment'"></mat-icon>
                     </button>
-                    <button mat-icon-button [matTooltip]="'Visualizar Denúncia'" routerLink="visualisar">
+                    <button mat-icon-button [matTooltip]="'Visualizar Denúncia'" (click)="abrirDetalhesDenuncia(denuncia?.id)">
                         <mat-icon svgIcon="heroicons_outline:eye"></mat-icon>
                       </button>
                   </span>

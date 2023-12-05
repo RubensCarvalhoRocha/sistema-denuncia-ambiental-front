@@ -60,6 +60,7 @@ const routerConfig: ExtraOptions = {
         LayoutModule,
 
         NgxMaskModule.forRoot(),
+
     ],
     bootstrap   : [
         AppComponent

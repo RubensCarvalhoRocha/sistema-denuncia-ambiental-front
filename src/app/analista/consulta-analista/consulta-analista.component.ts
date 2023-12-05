@@ -39,5 +39,17 @@ export class ConsultaAnalistaComponent {
       });
     }
 
+    abrirDetalhesDenuncia(id: number) {
+        this.analistaService.getDetalhesDenuncia(id).subscribe(
+          (detalhes) => {
+            // Manipular os detalhes da denúncia aqui (por exemplo, exibir em um modal)
+            console.log(detalhes);
+          },
+          (erro) => {
+            console.error('Erro ao obter detalhes da denúncia', erro);
+          }
+        );
+      }
+
   }
 
