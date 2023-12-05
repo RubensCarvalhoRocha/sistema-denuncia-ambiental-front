@@ -18,6 +18,7 @@ export class DenunciarComponent implements OnInit {
 
   alert: any;
   denunciaForm: UntypedFormGroup;
+  imagemBase64: string | null = null;
 
   loadingSave: boolean;
   concluido: boolean = false;
@@ -308,13 +309,31 @@ export class DenunciarComponent implements OnInit {
       latitude: ['', Validators.required],
       longitude: ['', Validators.required],
       categoriaPai: ['', Validators.required],
-      categoriaFilha: ['', Validators.required]
+      categoriaFilha: ['', Validators.required],
+      foto1: ['', Validators.required],
     });
   }
 
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
+
+  handleFileInput(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.convertToBase64(file);
+    }
+  }
+
+  convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagemBase64 = reader.result as string;
+      // Atualize o valor do campo 'foto1' no seu formulário
+      this.denunciaForm.get('foto1').setValue(this.imagemBase64);
+    };
+    reader.readAsDataURL(file);
+  }
 
   onCategoriaChange() {
     this.denunciaForm.get('categoriaFilha').setValue(null)
