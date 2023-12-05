@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Denuncias } from 'app/models/Denuncias';
 import { FiltroDenuncia } from 'app/models/FiltroDenuncia';
+import { DatePipe } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,7 +12,7 @@ export class AnalistaService {
     //url da api
     private url: string = 'http://localhost:8080';
 
-    constructor(private Http: HttpClient) {}
+    constructor(private Http: HttpClient, private datePipe: DatePipe) {}
 
     getDenuncias(): Observable<Denuncias[]> {
     return this.Http.get<Denuncias[]>(`${this.url}/denuncia`); // For retrieving all filmes
@@ -27,6 +28,8 @@ export class AnalistaService {
       }
 
       getDenunciasComFiltros(filtro: FiltroDenuncia): Observable<Denuncias[]> {
+        filtro.data = this.formatarDataParaBackend(filtro.data);
+
         // Construa os parâmetros de consulta com base no filtro fornecido
         const params = new HttpParams({
           fromObject: filtro as any
@@ -34,5 +37,10 @@ export class AnalistaService {
 
         // Faça a solicitação GET com os parâmetros de consulta
         return this.Http.get<Denuncias[]>(`${this.url}/denuncia/filtros`, { params });
+      }
+
+      private formatarDataParaBackend(data: string): string {
+        // Utilize o datePipe para formatar a data
+        return this.datePipe.transform(data, 'yyyy-MM-dd') || '';
       }
 }

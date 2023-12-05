@@ -72,6 +72,15 @@
                         </mat-form-field>
                     </div>
 
+                    <mat-form-field>
+                        <mat-label>Data do ocorrido</mat-label>
+
+                        <input matInput [(ngModel)]="filtro.data" [matDatepicker]="picker" (keyup.enter)="filtrar()"
+                            (click)="picker.open()">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
                     <div
                         class="flex flex-row justify-center md:justify-end lg:justify-end items-center gap-4 w-full"
                     >

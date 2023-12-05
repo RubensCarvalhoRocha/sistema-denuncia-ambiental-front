@@ -21,6 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { AnalistaService } from './analista.service';
 import { VisualisarComponent } from './visualisar/visualisar.component';
+import { DatePipe } from '@angular/common';
 
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
@@ -55,6 +56,6 @@ const routes: Routes = [
     MatSelectModule
 
   ],
-  providers: [AnalistaService],
+  providers: [AnalistaService, DatePipe],
 })
 export class AnalistaModule { }
