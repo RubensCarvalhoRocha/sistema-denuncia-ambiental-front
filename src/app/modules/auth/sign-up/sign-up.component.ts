@@ -19,9 +19,9 @@ export class AuthSignUpComponent implements OnInit
 {
     @ViewChild('signUpNgForm') signUpNgForm: NgForm;
 
-    tipos: Tipo[] = [
-        {value: 'DENUNCIANTE-0', viewValue: 'DENUNCIANTE'},
-        {value: 'ANALISTA-1', viewValue: 'ANALISTA'},
+      tipos = [
+        { id: 0, nome: 'DENUNCIANTE' },
+        { id: 1, nome: 'ANALISTA' },
       ];
 
     alert: { type: FuseAlertType; message: string } = {
@@ -53,11 +53,13 @@ export class AuthSignUpComponent implements OnInit
     {
         // Create the form
         this.signUpForm = this._formBuilder.group({
-                name      : ['', Validators.required],
-                CPF       : ['', Validators.required],
+                nome      : ['', Validators.required],
+                cpf       : ['', Validators.required],
                 email     : ['', [Validators.required, Validators.email]],
-                password  : ['', Validators.required],
+                descricao : [null,Validators.required],
                 telefone  : ['',Validators.required],
+                password  : ['', Validators.required],
+                confirmarPassword: ['', Validators.required],
             }
         );
     }
@@ -71,9 +73,16 @@ export class AuthSignUpComponent implements OnInit
      */
     signUp(): void
     {
+        if (this.signUpForm.get('password').value !== this.signUpForm.get('confirmarPassword').value) {
+            // Show error for password mismatch
+            this.signUpForm.get('confirmarPassword').setErrors({ 'passwordMismatch': true });
+            return;
+        }
+
         // Do nothing if the form is invalid
         if ( this.signUpForm.invalid )
         {
+            console.log(this.signUpForm);
             return;
         }
 

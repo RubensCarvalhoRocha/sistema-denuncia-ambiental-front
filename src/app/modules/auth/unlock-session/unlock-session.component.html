@@ -29,11 +29,11 @@
 
                 <!-- Name field -->
                 <mat-form-field class="w-full">
-                    <mat-label>Full name</mat-label>
+                    <mat-label>Full nome</mat-label>
                     <input
-                        id="name"
+                        id="nome"
                         matInput
-                        [formControlName]="'name'">
+                        [formControlName]="'nome'">
                 </mat-form-field>
 
                 <!-- Password field -->
@@ -85,7 +85,7 @@
                     <span>I'm not</span>
                     <a
                         class="ml-1 text-primary-500 hover:underline"
-                        [routerLink]="['/sign-out']">{{name}}</a>
+                        [routerLink]="['/sign-out']">{{nome}}</a>
                 </div>
 
             </form>
