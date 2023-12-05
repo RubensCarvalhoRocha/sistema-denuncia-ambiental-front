@@ -209,7 +209,7 @@
                     <span
                         class="pr-6 font-medium text-sm text-secondary whitespace-nowrap"
                     >
-                        <button mat-icon-button routerLink="analisar">
+                        <button mat-icon-button routerLink="analisar" (click)="abrirDetalhesDenuncia(denuncias?.id)">
                             <mat-icon
                                 [matTooltip]="'Analisar'"
                                 [svgIcon]="'assignment'"
@@ -218,7 +218,8 @@
                         <button
                             mat-icon-button
                             [matTooltip]="'Visualizar Denúncia'"
-                            (click)="abrirDetalhesDenuncia(denuncia?.id)"
+                            (click)="abrirDetalhesDenuncia(denuncias?.id)"
+                            routerLink="visualisar"
                         >
                             <mat-icon
                                 svgIcon="heroicons_outline:eye"

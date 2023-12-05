@@ -24,15 +24,15 @@
                     {{ alert.message }}
                 </fuse-alert>
 
-                <form
+                <!-- <form
                     class="space-y-3"
-                    [formGroup]="analiseForm"
                     #analiseNgForm="ngForm"
-                >
+                    > -->
+                    <!-- [formGroup]="analiseForm" -->
 
                 <mat-form-field>
-                    <mat-label>Protocolo</mat-label>
-                    <input matInput [value]="denuncias.id" readonly />
+                    <mat-label>Provavel Autor</mat-label>
+                    <input matInput [(ngModel)]="denuncias.provavelAutor" readonly />
                   </mat-form-field>
 
 
@@ -90,7 +90,7 @@
                             Enviar
                         </button>
                     </div>
-                </form>
+                <!-- </form> -->
             </div>
         </div>
     </div>

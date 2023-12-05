@@ -6,6 +6,8 @@ import { catchError } from 'rxjs/operators';
 import { DenuncianteService } from '../denunciante.service';
 import { AdicionarFotoComponent } from '../adicionar-foto/adicionar-foto.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-denunciar',
@@ -286,6 +288,7 @@ export class DenunciarComponent implements OnInit {
     private _formBuilder: UntypedFormBuilder,
     private denuncianteService: DenuncianteService,
     private _dialog: MatDialog,
+    private datePipe: DatePipe
   ) {}
 
   // -----------------------------------------------------------------------------------------------------
@@ -360,7 +363,13 @@ export class DenunciarComponent implements OnInit {
     // Verifica se o formulário é válido antes de enviar
     if (this.denunciaForm.valid) {
 
-        console.log('Conteúdo do formulário:', this.denunciaForm.value);
+         // Formata a data para o formato yyyy-MM-dd
+         const formattedDate = this.datePipe.transform(this.denunciaForm.value.data, 'yyyy-MM-dd');
+
+         // Atualiza a propriedade 'data' no formulário com a data formatada
+         this.denunciaForm.patchValue({ data: formattedDate });
+
+         console.log('Conteúdo do formulário:', this.denunciaForm.value);
 
         // Chama o serviço DenuncianteService para enviar os dados do formulário
         this.denuncianteService.postDenuncia(this.denunciaForm)

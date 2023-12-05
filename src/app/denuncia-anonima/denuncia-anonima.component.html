@@ -1,1 +1,348 @@
-<h1>DenunciaAnonima works!</h1>
+<div class="flex flex-col flex-auto min-w-0">
+    <!-- Main -->
+    <div class="flex flex-col flex-auto items-center p-6 sm:p-10">
+        <div class="flex flex-col w-full max-w-4xl">
+            <div class="-ml-4 sm:mt-8"></div>
+            <div
+                class="mt-2 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight"
+            >
+                Realize uma denúncia
+            </div>
+
+            <!-- Form -->
+            <div
+                class="mt-8 sm:mt-12 p-6 pb-7 sm:p-10 sm:pb-7 shadow rounded-2xl bg-card"
+            >
+                <!-- Alert -->
+
+                <fuse-alert
+                    class="mb-8"
+                    *ngIf="alert"
+                    [type]="alert.type"
+                    [showIcon]="false"
+                >
+                    {{ alert.message }}
+                </fuse-alert>
+                <form
+                    class="space-y-3"
+                    [formGroup]="denunciaForm"
+                    #denunciaNgForm="ngForm"
+                >
+                    <div class="mb-6">
+                        <div class="text-2xl font-bold tracking-tight">
+                            Faça uma denúncia
+                        </div>
+                        <div class="text-secondary">
+                            Sua solicitação será processada e nossa equipe de
+                            analista entrará em contato com você em 24 horas.
+                        </div>
+                    </div>
+
+                    <!-- Name -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'provavelAutor'"
+                            [required]="true"
+                        />
+                        <mat-label>Provavel Autor</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('provavelAutor')
+                                    .hasError('required')
+                            "
+                        >
+                            Provavel Autor é nescessário
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Rua -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            type="rua"
+                            matInput
+                            [formControlName]="'rua'"
+                            [required]="true"
+                        />
+                        <mat-label>Rua</mat-label>
+                        <mat-error
+                            *ngIf="denunciaForm.get('rua').hasError('required')"
+                        >
+                            Rua é nescessário
+                        </mat-error>
+                        <mat-error
+                            *ngIf="denunciaForm.get('rua').hasError('rua')"
+                        >
+                            Entre com uma Rua valida
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Municipio -->
+
+                    <mat-form-field class="w-full">
+                        <mat-label>Município</mat-label>
+                        <div>
+                            <mat-select [formControlName]="'municipio'">
+                                <mat-option
+                                    *ngFor="let municipio of municipiosGoias"
+                                    [value]="municipio"
+                                >
+                                    {{ municipio }}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('municipio')
+                                    .hasError('required')
+                            "
+                        >
+                            Município é necessário
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- CEP-->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'cep'"
+                            [required]="true"
+                            mask="00000-000"
+                        />
+                        <mat-label>CEP</mat-label>
+                        <mat-error
+                            *ngIf="denunciaForm.get('cep').hasError('required')"
+                        >
+                            CEP é necessário
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Bairro -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'bairro'"
+                            [required]="true"
+                        />
+                        <mat-label>Bairro</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm.get('bairro').hasError('required')
+                            "
+                        >
+                            Bairro é nescessário
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- pontoReferencia -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'pontoReferencia'"
+                            [required]="true"
+                        />
+                        <mat-label>Ponto de Referência</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('pontoReferencia')
+                                    .hasError('required')
+                            "
+                        >
+                            Ponto de Referência é necessário
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- latitude -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'latitude'"
+                            [required]="true"
+                        />
+                        <mat-label>Latitude</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('latitude')
+                                    .hasError('required')
+                            "
+                        >
+                            Latitude é necessária
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- longitude -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'longitude'"
+                            [required]="true"
+                        />
+                        <mat-label>Longitude</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('longitude')
+                                    .hasError('required')
+                            "
+                        >
+                            Longitude é necessário
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- data-->
+
+                    <!-- <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'data'"
+                            [required]="true"
+                        />
+                        <mat-label>Data</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm.get('data').hasError('required')
+                            "
+                        >
+                            Data é necessária
+                        </mat-error>
+                    </mat-form-field> -->
+                    <mat-form-field>
+                        <mat-label>Data do ocorrido</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm.get('data').hasError('required')
+                            "
+                        >
+                            Data é necessária
+                        </mat-error>
+                        <input matInput [formControlName]="'data'" [required]="true" [matDatepicker]="picker"
+                            (click)="picker.open()">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+
+                    <!-- Titulo -->
+
+                    <mat-form-field class="w-full">
+                        <input
+                            matInput
+                            [formControlName]="'titulo'"
+                            [required]="true"
+                        />
+                        <mat-label>Título</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm.get('titulo').hasError('required')
+                            "
+                        >
+                            Título é nescessário
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Categoria -->
+                    <mat-form-field class="w-full">
+                        <mat-label>Categoria</mat-label>
+                        <div>
+                            <mat-select
+                                [formControl]="denunciaForm.get('categoriaPai')"
+                                (change)="onCategoriaChange()"
+                            >
+                                <mat-option
+                                    *ngFor="let categoria of categorias"
+                                    [value]="categoria.id"
+                                >
+                                    {{ categoria.nome }}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('categoriaPai')
+                                    .hasError('required')
+                            "
+                        >
+                            Categoria é necessária
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Subcategoria -->
+                    <mat-form-field class="w-full">
+                        <mat-label>Subcategoria</mat-label>
+                        <mat-select [formControl]="denunciaForm.get('categoriaFilha')">
+                            <mat-option *ngFor="let subcategoria of getSubcategorias()" [value]="subcategoria.id">
+                                {{ subcategoria.nome }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- Upload de Imagens -->
+
+                    <input type="file" (change)="handleFileInput($event)" accept="image/png">
+
+                    <!-- Message -->
+                    <mat-form-field class="w-full">
+                        <textarea
+                            matInput
+                            [formControlName]="'descricao'"
+                            [required]="true"
+                            [rows]="5"
+                            cdkTextareaAutosize
+                        ></textarea>
+                        <mat-label>Descrição</mat-label>
+                        <mat-error
+                            *ngIf="
+                                denunciaForm
+                                    .get('descricao')
+                                    .hasError('required')
+                            "
+                        >
+                            Descrição é nescessária
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- Botoes -->
+
+                    <!-- limpar -->
+
+                    <div class="flex items-center justify-end">
+                        <button
+                            mat-button
+                            [color]="'accent'"
+                            [disabled]="
+                                denunciaForm.pristine || denunciaForm.untouched
+                            "
+                            (click)="clearForm()"
+                        >
+                            limpar
+                        </button>
+
+                        <!-- Enviar -->
+
+                        <button
+                            class="ml-2"
+                            mat-flat-button
+                            [color]="'primary'"
+                            [disabled]="
+                                denunciaForm.pristine || denunciaForm.invalid
+                            "
+                            (click)="sendForm()"
+                        >
+                            Enviar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

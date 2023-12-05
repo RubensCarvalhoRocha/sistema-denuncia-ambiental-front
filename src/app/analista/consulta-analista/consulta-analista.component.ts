@@ -92,6 +92,7 @@ export class ConsultaAnalistaComponent {
       }
 
     abrirDetalhesDenuncia(id: number) {
+        console.log(id);
         this.analistaService.getDetalhesDenuncia(id).subscribe(
           (detalhes) => {
             // Manipular os detalhes da denúncia aqui (por exemplo, exibir em um modal)

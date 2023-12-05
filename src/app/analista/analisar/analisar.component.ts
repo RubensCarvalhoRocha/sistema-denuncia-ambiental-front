@@ -4,6 +4,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Denuncias } from 'app/models/Denuncias';
 import { catchError } from 'rxjs/operators';
 import { AnalistaService } from '../analista.service';
+
 @Component({
   selector: 'app-analisar',
   templateUrl: './analisar.component.html',
