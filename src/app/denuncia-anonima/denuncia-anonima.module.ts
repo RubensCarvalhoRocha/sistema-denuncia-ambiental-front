@@ -18,6 +18,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { DatePipe } from '@angular/common';
 import { DenunciaAnonimaService } from './denuncia-anonima.service';
+import { ToastrModule } from 'ngx-toastr';
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
@@ -45,7 +46,8 @@ const routes: Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forRoot(), // Adicione isso para animações
+    ToastrModule.forRoot(),
   ],
   providers: [DatePipe, DenunciaAnonimaService],
 })

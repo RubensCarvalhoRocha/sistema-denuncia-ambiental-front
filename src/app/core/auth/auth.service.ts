@@ -76,7 +76,7 @@ export class AuthService {
                     (response: any) => {
                         this.accessToken = response.accessToken;
 
-                        console.log(this.accessToken);
+                        console.log(response);
                         this._authenticated = true;
 
                         this._userService.user = response.user;

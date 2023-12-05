@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { ToastrModule } from 'ngx-toastr';
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
@@ -47,6 +48,8 @@ const routerConfig: ExtraOptions = {
         MatFormFieldModule,
         MatButtonModule,
 
+        BrowserAnimationsModule, // Adicione isso para animações
+        ToastrModule.forRoot(),
 
         // Fuse, FuseConfig & FuseMockAPI
         FuseModule,
