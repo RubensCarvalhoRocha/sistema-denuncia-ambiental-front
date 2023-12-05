@@ -10,7 +10,7 @@
             </div>
 
             <!-- Form -->
-            <div
+            <form [formGroup]="analiseForm"
                 class="mt-8 sm:mt-12 p-6 pb-7 sm:p-10 sm:pb-7 shadow rounded-2xl bg-card"
             >
                 <!-- Alert -->
@@ -30,10 +30,54 @@
                     > -->
                     <!-- [formGroup]="analiseForm" -->
 
-                <mat-form-field>
+                <!-- Status -->
+
+
+
+                    <div class="flex">
+                <mat-form-field class="flex-auto">
                     <mat-label>Provavel Autor</mat-label>
-                    <input matInput [(ngModel)]="denuncias.provavelAutor" readonly />
+                    <input [formControlName]="'provavelAutor'" matInput readonly />
                   </mat-form-field>
+                </div>
+
+                <div class="flex">
+                    <mat-form-field class="flex-auto">
+                        <mat-label>Município</mat-label>
+                        <input [formControlName]="'municipio'" matInput readonly />
+                      </mat-form-field>
+                    </div>
+
+                    <div class="flex">
+                        <mat-form-field class="flex-auto">
+                            <mat-label>Rua</mat-label>
+                            <input [formControlName]="'rua'" matInput readonly />
+                          </mat-form-field>
+                        </div>
+
+                        <div class="flex">
+                            <mat-form-field class="flex-auto">
+                                <mat-label>Categoria</mat-label>
+                                <input [formControlName]="'categoriaPai'" matInput readonly />
+                              </mat-form-field>
+                            </div>
+
+                            <div class="flex">
+                                <mat-form-field class="flex-auto">
+                                    <mat-label>SubCategoria</mat-label>
+                                    <input [formControlName]="'categoriaFilha'" matInput readonly />
+                                  </mat-form-field>
+                                </div>
+
+                  <div class="flex">
+                    <mat-form-field
+                        class="flex-auto">
+                        <mat-label>Descrição</mat-label>
+                        <textarea matInput [formControlName]="'descricao'"
+                        matInput readonly></textarea>
+                    </mat-form-field>
+                </div>
+
 
 
                     <!-- Status -->
@@ -41,7 +85,7 @@
                     <mat-form-field class="w-full">
                         <mat-label>Status da Denuncia</mat-label>
                         <div>
-                            <mat-select [(ngModel)]="currentStatus" [formControlName]="'status'">
+                            <mat-select [formControlName]="'status'">
                                 <mat-option *ngFor="let s of status" [value]="s.id">
                                     {{ s.nome }}
                                 </mat-option>
@@ -91,7 +135,7 @@
                         </button>
                     </div>
                 <!-- </form> -->
-            </div>
+            </form>
         </div>
     </div>
 </div>

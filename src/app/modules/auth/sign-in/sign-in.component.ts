@@ -68,7 +68,7 @@ export class AuthSignInComponent implements OnInit {
         }
 
         // Formata o CPF antes de enviar para o serviço
-        const cpfFormatado = this.formatarCPF(this.signInForm.get('cpf').value);
+        // const cpfFormatado = this.formatarCPF(this.signInForm.get('cpf').value);
 
         // Disable the form
         this.signInForm.disable();
@@ -79,7 +79,7 @@ export class AuthSignInComponent implements OnInit {
         // Sign in
         this._authService
             .signIn({
-                cpf: cpfFormatado,
+                cpf: this.signInForm.get('cpf').value,
                 password: this.signInForm.get('password').value,
             })
             .subscribe(
@@ -134,13 +134,13 @@ export class AuthSignInComponent implements OnInit {
      * @param cpf O CPF a ser formatado
      * @returns O CPF formatado
      */
-    private formatarCPF(cpf: string): string {
-        const cpfNumerico = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
-        return cpfNumerico.replace(
-            /(\d{3})(\d{3})(\d{3})(\d{2})/,
-            '$1.$2.$3-$4'
-        ); // Formata o CPF
-    }
+    // private formatarCPF(cpf: string): string {
+    //     const cpfNumerico = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+    //     return cpfNumerico.replace(
+    //         /(\d{3})(\d{3})(\d{3})(\d{2})/,
+    //         '$1.$2.$3-$4'
+    //     ); // Formata o CPF
+    // }
 
     denunciaAnonima(){
 
