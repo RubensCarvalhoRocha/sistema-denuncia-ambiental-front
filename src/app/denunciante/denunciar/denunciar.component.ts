@@ -6,6 +6,8 @@ import { catchError } from 'rxjs/operators';
 import { DenuncianteService } from '../denunciante.service';
 import { AdicionarFotoComponent } from '../adicionar-foto/adicionar-foto.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-denunciar',
@@ -18,6 +20,7 @@ export class DenunciarComponent implements OnInit {
 
   alert: any;
   denunciaForm: UntypedFormGroup;
+  imagemBase64: string | null = null;
 
   loadingSave: boolean;
   concluido: boolean = false;
@@ -285,6 +288,7 @@ export class DenunciarComponent implements OnInit {
     private _formBuilder: UntypedFormBuilder,
     private denuncianteService: DenuncianteService,
     private _dialog: MatDialog,
+    private datePipe: DatePipe
   ) {}
 
   // -----------------------------------------------------------------------------------------------------
@@ -308,13 +312,31 @@ export class DenunciarComponent implements OnInit {
       latitude: ['', Validators.required],
       longitude: ['', Validators.required],
       categoriaPai: ['', Validators.required],
-      categoriaFilha: ['', Validators.required]
+      categoriaFilha: ['', Validators.required],
+      foto1: ['', Validators.required],
     });
   }
 
   // -----------------------------------------------------------------------------------------------------
   // @ Public methods
   // -----------------------------------------------------------------------------------------------------
+
+  handleFileInput(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.convertToBase64(file);
+    }
+  }
+
+  convertToBase64(file: File): void {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagemBase64 = reader.result as string;
+      // Atualize o valor do campo 'foto1' no seu formulário
+      this.denunciaForm.get('foto1').setValue(this.imagemBase64);
+    };
+    reader.readAsDataURL(file);
+  }
 
   onCategoriaChange() {
     this.denunciaForm.get('categoriaFilha').setValue(null)
@@ -341,7 +363,13 @@ export class DenunciarComponent implements OnInit {
     // Verifica se o formulário é válido antes de enviar
     if (this.denunciaForm.valid) {
 
-        console.log('Conteúdo do formulário:', this.denunciaForm.value);
+         // Formata a data para o formato yyyy-MM-dd
+         const formattedDate = this.datePipe.transform(this.denunciaForm.value.data, 'yyyy-MM-dd');
+
+         // Atualiza a propriedade 'data' no formulário com a data formatada
+         this.denunciaForm.patchValue({ data: formattedDate });
+
+         console.log('Conteúdo do formulário:', this.denunciaForm.value);
 
         // Chama o serviço DenuncianteService para enviar os dados do formulário
         this.denuncianteService.postDenuncia(this.denunciaForm)

@@ -76,6 +76,7 @@ export class AuthService {
                     (response: any) => {
                         this.accessToken = response.accessToken;
 
+                        console.log(response);
                         this._authenticated = true;
 
                         this._userService.user = response.user;
@@ -117,6 +118,10 @@ export class AuthService {
                     // piece of code can replace the token with the refreshed one.
                     if (response.accessToken) {
                         this.accessToken = response.accessToken;
+
+
+
+                        console.log(this.accessToken);
                     }
 
                     // Set the authenticated flag to true
@@ -151,12 +156,14 @@ export class AuthService {
      * @param user
      */
     signUp(user: {
-        name: string;
+        nome: string;
+        cpf: string;
         email: string;
         password: string;
-        company: string;
+        descricao: number;
+        telefone:string;
     }): Observable<any> {
-        return this._httpClient.post('api/auth/sign-up', user);
+        return this._httpClient.post(`${this.url}/usuario/cadastrar`, user);
     }
 
     /**

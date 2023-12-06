@@ -4,6 +4,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Denuncias } from 'app/models/Denuncias';
 import { catchError } from 'rxjs/operators';
 import { AnalistaService } from '../analista.service';
+
 @Component({
   selector: 'app-analisar',
   templateUrl: './analisar.component.html',
@@ -18,7 +19,7 @@ export class AnalisarComponent implements OnInit{
 
     public denuncias: Denuncias = new Denuncias();
 
-    currentStatus: number;
+    // currentStatus: number;
 
     status = [
         { id: 0, nome: 'EM ABERTO' },
@@ -30,13 +31,35 @@ export class AnalisarComponent implements OnInit{
         private _formBuilder: UntypedFormBuilder,
         private analistaService: AnalistaService,
       ) {}
-
+    //   provavelAutor: ['', Validators.required],
+    //   rua: ['', Validators.required],
+    //   municipio: ['', Validators.required],
+    //   CEP: ['', Validators.required],
+    //   pontoReferencia: ['', Validators.required],
+    //   bairro: ['', Validators.required],
+    //   data: ['', Validators.required],
+    //   titulo: ['', Validators.required],
+    //   descricao: ['', Validators.required],
+    //   latitude: ['', Validators.required],
+    //   longitude: ['', Validators.required],
+    //   categoriaPai: ['', Validators.required],
+    //   categoriaFilha: ['', Validators.required],
+    //   foto1: ['', Validators.required],
       ngOnInit(): void {
         this.analiseForm = this._formBuilder.group({
+          provavelAutor:['', Validators.required],
+          id:[''],
           parecerTecnico: ['', Validators.required],
           status: ['', Validators.required],
+          descricao:[''],
+          rua:[''],
+          municipio:[''],
+          categoriaPai:[''],
+          categoriaFilha:[''],
+
         });
-        this.currentStatus = this.denuncias.status
+        // this.currentStatus = this.denuncias.status
+        this.analistaService.denunciaDetalhada$.subscribe(res=>this.analiseForm.patchValue(res))
       }
 
       sendForm(): void {
@@ -48,7 +71,7 @@ export class AnalisarComponent implements OnInit{
             const idDenuncia = this.denuncias.id; // Substitua 'id' pelo nome correto do campo ID em Denuncias
 
             // Chama o serviço AnalistaService para enviar os dados do formulário
-            this.analistaService.patchDenuncia(idDenuncia, this.analiseForm.value)
+            this.analistaService.patchDenuncia(this.analiseForm.value.id, this.analiseForm.value)
                 .pipe(
                     // Trata possíveis erros na chamada HTTP
                     catchError(error => {

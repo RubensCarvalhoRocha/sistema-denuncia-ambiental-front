@@ -20,7 +20,7 @@ export class AuthUnlockSessionComponent implements OnInit
         type   : 'success',
         message: ''
     };
-    name: string;
+    nome: string;
     showAlert: boolean = false;
     unlockSessionForm: UntypedFormGroup;
     private _cpf: string;
@@ -49,15 +49,15 @@ export class AuthUnlockSessionComponent implements OnInit
     {
         // Get the user's name
         this._userService.user$.subscribe((user) => {
-            this.name = user.name;
+            this.nome = user.nome;
             this._cpf = user.cpf;
         });
 
         // Create the form
         this.unlockSessionForm = this._formBuilder.group({
-            name    : [
+            nome    : [
                 {
-                    value   : this.name,
+                    value   : this.nome,
                     disabled: true
                 }
             ],
@@ -109,8 +109,8 @@ export class AuthUnlockSessionComponent implements OnInit
 
                 // Reset the form
                 this.unlockSessionNgForm.resetForm({
-                    name: {
-                        value   : this.name,
+                    nome: {
+                        value   : this.nome,
                         disabled: true
                     }
                 });

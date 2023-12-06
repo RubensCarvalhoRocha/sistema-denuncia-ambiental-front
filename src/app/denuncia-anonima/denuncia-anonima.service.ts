@@ -6,22 +6,19 @@ import { Observable } from 'rxjs';
 import { DatePipe } from '@angular/common';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
-export class DenuncianteService {
+export class DenunciaAnonimaService {
     //url da api
     private url: string = 'http://localhost:8080';
 
     constructor(private Http: HttpClient, private datePipe: DatePipe) {}
 
     postDenuncia(denunciaForm: UntypedFormGroup): Observable<any> {
-
         // Endpoint específico para cadastrar denúncias
         const endpoint = `${this.url}/denuncia/cadastrar`;
 
         // Faz a requisição POST enviando os dados do formulário
         return this.Http.post<any>(endpoint, denunciaForm.value);
-      }
-
+    }
 }
-

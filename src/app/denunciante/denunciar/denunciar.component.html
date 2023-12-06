@@ -288,6 +288,8 @@
 
                     <!-- Upload de Imagens -->
 
+                    <input type="file" (change)="handleFileInput($event)" accept="image/png">
+
                     <!-- Message -->
                     <mat-form-field class="w-full">
                         <textarea
@@ -308,10 +310,6 @@
                             Descrição é nescessária
                         </mat-error>
                     </mat-form-field>
-
-                    <div class="flex justify-end w-full">
-                        <button mat-flat-button [color]="'primary'" (click)="openDialog()"><span> Adicionar Foto </span></button>
-                      </div>
 
                     <!-- Botoes -->
 

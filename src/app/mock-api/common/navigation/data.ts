@@ -3,13 +3,13 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 
 export const compactNavigation: FuseNavigationItem[] = [
 
-    {
-        id: 'denunciar',
-        title: 'Denunciar',
-        type: 'basic',
-        icon: 'dashboard',
-        link: '/denunciar',
-    },
+    // {
+    //     id: 'denunciar',
+    //     title: 'Denunciar',
+    //     type: 'basic',
+    //     icon: 'dashboard',
+    //     link: '/denunciar',
+    // },
 
     {
         id: 'consultar',
