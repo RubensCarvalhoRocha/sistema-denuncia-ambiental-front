@@ -64,34 +64,22 @@ export class AuthService {
     //
     // ==== replica esse cara aqui e pega resposta do login e seta no localstorage
     signIn(credentials: { cpf: string; password: string }): Observable<any> {
-        // Throw error, if the user is already logged in
-        if (this._authenticated) {
-            return throwError('User is already logged in.');
-        }
-
-        return this._httpClient
-            .post(`${this.url}/api/auth/login`, credentials)
-            .pipe(
-                tap(
-                    (response: any) => {
-                        this.accessToken = response.accessToken;
-
-                        console.log(response);
-                        this._authenticated = true;
-
-                        this._userService.user = response.user;
-
-                        return of(response);
-                    },
-                    (err) => {
-                        this.accessToken = err;
-
-                        this._authenticated = true;
-
-                        return of(err);
-                    }
-                )
-            );
+        // Simula login sempre com sucesso
+        this._authenticated = true;
+        const fakeResponse = {
+            accessToken: 'fake-token',
+            user: {
+                id: 1,
+                cpf: credentials.cpf,
+                nome: 'Usuário Simulado',
+                email: 'simulado@email.com',
+                telefone: '000000000',
+                descricao: 0
+            }
+        };
+        this.accessToken = fakeResponse.accessToken;
+        this._userService.user = fakeResponse.user;
+        return of(fakeResponse);
     }
 
     /**
